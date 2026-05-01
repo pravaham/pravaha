@@ -1,0 +1,192 @@
+
+> @pravaha/plugin-otel@0.1.0 test C:\Users\snova\Documents\tcs\Learnings\AIProjects\flowagent\packages\plugins\otel
+> vitest run
+
+
+[7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mC:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/packages/plugins/otel[39m
+
+[90mstdout[2m | tests/otel.test.ts[2m > [22m[2mOtelPlugin[2m > [22m[2mworks end-to-end in a pipeline without throwing[22m[39m
+{
+  resource: {
+    attributes: {
+      [32m'service.name'[39m: [32m'pravaha'[39m,
+      [32m'telemetry.sdk.language'[39m: [32m'nodejs'[39m,
+      [32m'telemetry.sdk.name'[39m: [32m'opentelemetry'[39m,
+      [32m'telemetry.sdk.version'[39m: [32m'1.30.1'[39m,
+      [32m'service.version'[39m: [32m'0.1.0'[39m
+    }
+  },
+  instrumentationScope: { name: [32m'pravaha'[39m, version: [32m'0.1.0'[39m, schemaUrl: [90mundefined[39m },
+  traceId: [32m'43383fb56a3d8cc49d1c4d68acdd26b7'[39m,
+  parentId: [32m'd299654a4b644e15'[39m,
+  traceState: [90mundefined[39m,
+  name: [32m'step:test-step'[39m,
+  id: [32m'4ec3a4fe02b799c1'[39m,
+  kind: [33m0[39m,
+  timestamp: [33m1777645817559000[39m,
+  duration: [33m1000[39m,
+  attributes: {
+    [32m'pravaha.step.id'[39m: [32m'test-step'[39m,
+    [32m'pravaha.step.type'[39m: [32m'transform'[39m,
+    [32m'pravaha.step.status'[39m: [32m'completed'[39m,
+    [32m'pravaha.step.duration_ms'[39m: [33m1[39m
+  },
+  status: { code: [33m1[39m },
+  events: [],
+  links: []
+}
+{
+  resource: {
+    attributes: {
+      [32m'service.name'[39m: [32m'pravaha'[39m,
+      [32m'telemetry.sdk.language'[39m: [32m'nodejs'[39m,
+      [32m'telemetry.sdk.name'[39m: [32m'opentelemetry'[39m,
+      [32m'telemetry.sdk.version'[39m: [32m'1.30.1'[39m,
+      [32m'service.version'[39m: [32m'0.1.0'[39m
+    }
+  },
+  instrumentationScope: { name: [32m'pravaha'[39m, version: [32m'0.1.0'[39m, schemaUrl: [90mundefined[39m },
+  traceId: [32m'43383fb56a3d8cc49d1c4d68acdd26b7'[39m,
+  parentId: [90mundefined[39m,
+  traceState: [90mundefined[39m,
+  name: [32m'pipeline:otel-test'[39m,
+  id: [32m'd299654a4b644e15'[39m,
+  kind: [33m0[39m,
+  timestamp: [33m1777645817558000[39m,
+  duration: [33m4000[39m,
+  attributes: {
+    [32m'pravaha.pipeline.id'[39m: [32m'otel-test'[39m,
+    [32m'pravaha.run.id'[39m: [32m'fbd8e6cc-0b92-4354-b4d3-b9ea829b14a5'[39m,
+    [32m'pravaha.dry_run'[39m: [32m'false'[39m,
+    [32m'pravaha.pipeline.status'[39m: [32m'completed'[39m,
+    [32m'pravaha.pipeline.duration_ms'[39m: [33m4[39m,
+    [32m'pravaha.pipeline.step_count'[39m: [33m1[39m
+  },
+  status: { code: [33m1[39m },
+  events: [],
+  links: []
+}
+
+[90mstdout[2m | tests/otel.test.ts[2m > [22m[2mOtelPlugin[2m > [22m[2mrecords step attributes in spans[22m[39m
+{
+  resource: {
+    attributes: {
+      [32m'service.name'[39m: [32m'pravaha'[39m,
+      [32m'telemetry.sdk.language'[39m: [32m'nodejs'[39m,
+      [32m'telemetry.sdk.name'[39m: [32m'opentelemetry'[39m,
+      [32m'telemetry.sdk.version'[39m: [32m'1.30.1'[39m,
+      [32m'service.version'[39m: [32m'0.1.0'[39m
+    }
+  },
+  instrumentationScope: { name: [32m'pravaha'[39m, version: [32m'0.1.0'[39m, schemaUrl: [90mundefined[39m },
+  traceId: [32m'1f47adab8426e3a39269a212e0225fec'[39m,
+  parentId: [32m'806a379b4ac088c0'[39m,
+  traceState: [90mundefined[39m,
+  name: [32m'step:spy-step'[39m,
+  id: [32m'f3fc830366a798ea'[39m,
+  kind: [33m0[39m,
+  timestamp: [33m1777645817565000[39m,
+  duration: [33m0[39m,
+  attributes: {
+    [32m'pravaha.step.id'[39m: [32m'spy-step'[39m,
+    [32m'pravaha.step.type'[39m: [32m'transform'[39m,
+    [32m'pravaha.step.status'[39m: [32m'completed'[39m,
+    [32m'pravaha.step.duration_ms'[39m: [33m0[39m
+  },
+  status: { code: [33m1[39m },
+  events: [],
+  links: []
+}
+{
+  resource: {
+    attributes: {
+      [32m'service.name'[39m: [32m'pravaha'[39m,
+      [32m'telemetry.sdk.language'[39m: [32m'nodejs'[39m,
+      [32m'telemetry.sdk.name'[39m: [32m'opentelemetry'[39m,
+      [32m'telemetry.sdk.version'[39m: [32m'1.30.1'[39m,
+      [32m'service.version'[39m: [32m'0.1.0'[39m
+    }
+  },
+  instrumentationScope: { name: [32m'pravaha'[39m, version: [32m'0.1.0'[39m, schemaUrl: [90mundefined[39m },
+  traceId: [32m'1f47adab8426e3a39269a212e0225fec'[39m,
+  parentId: [90mundefined[39m,
+  traceState: [90mundefined[39m,
+  name: [32m'pipeline:spy-test'[39m,
+  id: [32m'806a379b4ac088c0'[39m,
+  kind: [33m0[39m,
+  timestamp: [33m1777645817565000[39m,
+  duration: [33m0[39m,
+  attributes: {
+    [32m'pravaha.pipeline.id'[39m: [32m'spy-test'[39m,
+    [32m'pravaha.run.id'[39m: [32m'c87fb659-d12f-44ac-a66a-42a9776038fd'[39m,
+    [32m'pravaha.dry_run'[39m: [32m'false'[39m,
+    [32m'pravaha.pipeline.status'[39m: [32m'completed'[39m,
+    [32m'pravaha.pipeline.duration_ms'[39m: [33m1[39m,
+    [32m'pravaha.pipeline.step_count'[39m: [33m1[39m
+  },
+  status: { code: [33m1[39m },
+  events: [],
+  links: []
+}
+
+[90mstdout[2m | tests/otel.test.ts[2m > [22m[2mOtelPlugin[2m > [22m[2mhandles pipeline failure gracefully[22m[39m
+{
+  resource: {
+    attributes: {
+      [32m'service.name'[39m: [32m'pravaha'[39m,
+      [32m'telemetry.sdk.language'[39m: [32m'nodejs'[39m,
+      [32m'telemetry.sdk.name'[39m: [32m'opentelemetry'[39m,
+      [32m'telemetry.sdk.version'[39m: [32m'1.30.1'[39m,
+      [32m'service.version'[39m: [32m'0.1.0'[39m
+    }
+  },
+  instrumentationScope: { name: [32m'pravaha'[39m, version: [32m'0.1.0'[39m, schemaUrl: [90mundefined[39m },
+  traceId: [32m'662b2e09efb997ed37d01f7cea529464'[39m,
+  parentId: [90mundefined[39m,
+  traceState: [90mundefined[39m,
+  name: [32m'pipeline:fail-test'[39m,
+  id: [32m'1ddf3f117f3e4e08'[39m,
+  kind: [33m0[39m,
+  timestamp: [33m1777645817567000[39m,
+  duration: [33m3000[39m,
+  attributes: {
+    [32m'pravaha.pipeline.id'[39m: [32m'fail-test'[39m,
+    [32m'pravaha.run.id'[39m: [32m'9562399b-9522-47fe-8039-e17b80c245de'[39m,
+    [32m'pravaha.dry_run'[39m: [32m'false'[39m,
+    [32m'pravaha.pipeline.status'[39m: [32m'failed'[39m,
+    [32m'pravaha.pipeline.duration_ms'[39m: [33m3[39m,
+    [32m'pravaha.pipeline.step_count'[39m: [33m1[39m
+  },
+  status: { code: [33m2[39m, message: [32m'Pipeline failed'[39m },
+  events: [
+    {
+      name: [32m'exception'[39m,
+      attributes: {
+        [32m'exception.type'[39m: [32m'STEP_EXECUTION_ERROR'[39m,
+        [32m'exception.message'[39m: [32m"Step 'fail-step' failed: Deliberate failure"[39m,
+        [32m'exception.stacktrace'[39m: [32m"StepExecutionError: Step 'fail-step' failed: Deliberate failure\n"[39m +
+          [32m'    at TransformStep.execute (C:\\Users\\snova\\Documents\\tcs\\Learnings\\AIProjects\\flowagent\\packages\\core\\src\\step\\index.ts:86:13)\n'[39m +
+          [32m'    at Pipeline.run (C:\\Users\\snova\\Documents\\tcs\\Learnings\\AIProjects\\flowagent\\packages\\core\\src\\pipeline\\index.ts:135:26)\n'[39m +
+          [32m'    at C:\\Users\\snova\\Documents\\tcs\\Learnings\\AIProjects\\flowagent\\packages\\plugins\\otel\\tests\\otel.test.ts:94:5\n'[39m +
+          [32m'    at runTest (file:///C:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:781:11)\n'[39m +
+          [32m'    at runSuite (file:///C:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:909:15)\n'[39m +
+          [32m'    at runSuite (file:///C:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:909:15)\n'[39m +
+          [32m'    at runFiles (file:///C:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:958:5)\n'[39m +
+          [32m'    at startTests (file:///C:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:967:3)\n'[39m +
+          [32m'    at file:///C:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/node_modules/.pnpm/vitest@1.6.1_@types+node@20.19.39/node_modules/vitest/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7\n'[39m +
+          [32m'    at withEnv (file:///C:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/node_modules/.pnpm/vitest@1.6.1_@types+node@20.19.39/node_modules/vitest/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:83:5)'[39m
+      },
+      time: [ [33m1777645817[39m, [33m569582600[39m ],
+      droppedAttributesCount: [33m0[39m
+    }
+  ],
+  links: []
+}
+
+ [32m✓[39m tests/otel.test.ts [2m ([22m[2m7 tests[22m[2m)[22m[90m 288[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m7 passed[39m[22m[90m (7)[39m
+[2m   Start at [22m 20:00:06
+[2m   Duration [22m 11.29s[2m (transform 2.71s, setup 0ms, collect 6.90s, tests 288ms, environment 0ms, prepare 2.24s)[22m
+

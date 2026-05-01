@@ -1,0 +1,105 @@
+{
+  "runId": "dc91a84b-c8ed-41ad-8e94-a262018e7a5c",
+  "pipelineId": "agent-support-triage",
+  "pipelineName": "Agent Support Triage",
+  "status": "completed",
+  "startedAt": 1777265626785,
+  "completedAt": 1777265626786,
+  "durationMs": 1,
+  "events": [
+    {
+      "stepId": "support-agent",
+      "stepType": "agent",
+      "status": "completed",
+      "startedAt": 1777265626785,
+      "completedAt": 1777265626786,
+      "durationMs": 1,
+      "input": "I was charged twice for my subscription this month. Please refund the duplicate charge.",
+      "output": {
+        "content": "{\"category\": \"billing\", \"confidence\": 0.95, \"response\": \"We will review your invoice within 1 business day.\", \"escalate\": false}",
+        "iterations": [
+          {
+            "iteration": 1,
+            "response": {
+              "type": "text",
+              "content": "{\"category\": \"billing\", \"confidence\": 0.95, \"response\": \"We will review your invoice within 1 business day.\", \"escalate\": false}",
+              "usage": {
+                "promptTokens": 50,
+                "completionTokens": 30,
+                "totalTokens": 80
+              },
+              "model": "mock"
+            },
+            "durationMs": 0
+          }
+        ],
+        "totalUsage": {
+          "promptTokens": 50,
+          "completionTokens": 30,
+          "totalTokens": 80
+        }
+      },
+      "metadata": {
+        "retryPolicy": {
+          "maxAttempts": 2,
+          "backoffMs": 500,
+          "retryOn": [
+            null,
+            null
+          ]
+        },
+        "routedTo": "parse-agent-response",
+        "routeReason": "Continue to step 'parse-agent-response'"
+      },
+      "id": "566b9fca-30e9-4078-a043-12b724b8e6b3",
+      "runId": "dc91a84b-c8ed-41ad-8e94-a262018e7a5c",
+      "pipelineId": "agent-support-triage"
+    },
+    {
+      "stepId": "parse-agent-response",
+      "stepType": "agent:output-parser",
+      "status": "completed",
+      "startedAt": 1777265626786,
+      "completedAt": 1777265626786,
+      "durationMs": 0,
+      "input": {
+        "content": "{\"category\": \"billing\", \"confidence\": 0.95, \"response\": \"We will review your invoice within 1 business day.\", \"escalate\": false}",
+        "iterations": [
+          {
+            "iteration": 1,
+            "response": {
+              "type": "text",
+              "content": "{\"category\": \"billing\", \"confidence\": 0.95, \"response\": \"We will review your invoice within 1 business day.\", \"escalate\": false}",
+              "usage": {
+                "promptTokens": 50,
+                "completionTokens": 30,
+                "totalTokens": 80
+              },
+              "model": "mock"
+            },
+            "durationMs": 0
+          }
+        ],
+        "totalUsage": {
+          "promptTokens": 50,
+          "completionTokens": 30,
+          "totalTokens": 80
+        }
+      },
+      "output": {
+        "category": "billing",
+        "confidence": 0.95,
+        "response": "We will review your invoice within 1 business day.",
+        "escalate": false
+      },
+      "metadata": {
+        "routedTo": null,
+        "routeReason": "Pipeline complete"
+      },
+      "id": "b0680d2e-9d3a-450b-b915-6d60833bd20c",
+      "runId": "dc91a84b-c8ed-41ad-8e94-a262018e7a5c",
+      "pipelineId": "agent-support-triage"
+    }
+  ],
+  "metadata": {}
+}

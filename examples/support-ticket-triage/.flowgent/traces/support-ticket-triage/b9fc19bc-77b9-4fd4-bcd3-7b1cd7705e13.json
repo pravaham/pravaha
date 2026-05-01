@@ -1,0 +1,83 @@
+{
+  "runId": "b9fc19bc-77b9-4fd4-bcd3-7b1cd7705e13",
+  "pipelineId": "support-ticket-triage",
+  "pipelineName": "Support Ticket Triage",
+  "status": "completed",
+  "startedAt": 1777259716629,
+  "completedAt": 1777259716629,
+  "durationMs": 0,
+  "events": [
+    {
+      "stepId": "classify-ticket",
+      "stepType": "transform",
+      "status": "completed",
+      "startedAt": 1777259716629,
+      "completedAt": 1777259716629,
+      "durationMs": 0,
+      "input": {
+        "id": "TKT-003",
+        "subject": "How do I export my data?",
+        "body": "I would like to export all my data as CSV. Is this feature available?",
+        "customerId": "CUST-789",
+        "priority": "low"
+      },
+      "output": {
+        "ticket": {
+          "id": "TKT-003",
+          "subject": "How do I export my data?",
+          "body": "I would like to export all my data as CSV. Is this feature available?",
+          "customerId": "CUST-789",
+          "priority": "low"
+        },
+        "category": "general",
+        "confidence": 0.6,
+        "reasoning": "No specific keywords matched, defaulting to general"
+      },
+      "metadata": {
+        "routedTo": "general-response",
+        "routeReason": "General category — default handler"
+      },
+      "id": "35894189-ac26-4e29-ab86-687ebd81bfab",
+      "runId": "b9fc19bc-77b9-4fd4-bcd3-7b1cd7705e13",
+      "pipelineId": "support-ticket-triage"
+    },
+    {
+      "stepId": "general-response",
+      "stepType": "llm:mock",
+      "status": "completed",
+      "startedAt": 1777259716629,
+      "completedAt": 1777259716629,
+      "durationMs": 0,
+      "input": {
+        "ticket": {
+          "id": "TKT-003",
+          "subject": "How do I export my data?",
+          "body": "I would like to export all my data as CSV. Is this feature available?",
+          "customerId": "CUST-789",
+          "priority": "low"
+        },
+        "category": "general",
+        "confidence": 0.6,
+        "reasoning": "No specific keywords matched, defaulting to general"
+      },
+      "output": {
+        "ticketId": "TKT-003",
+        "category": "general",
+        "response": "Dear Customer CUST-789, thank you for contacting support. We will respond within 2 business days. Reference: TKT-003",
+        "suggestedActions": [
+          "Review FAQ",
+          "Check knowledge base"
+        ],
+        "escalate": false
+      },
+      "metadata": {
+        "routedTo": null,
+        "routeReason": "Pipeline complete"
+      },
+      "id": "ea09494c-de15-4fd8-a2df-14ed76acdaca",
+      "runId": "b9fc19bc-77b9-4fd4-bcd3-7b1cd7705e13",
+      "pipelineId": "support-ticket-triage"
+    }
+  ],
+  "metadata": {}
+}

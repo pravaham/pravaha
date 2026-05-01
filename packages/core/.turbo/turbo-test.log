@@ -1,0 +1,19 @@
+
+> @pravaha/core@0.1.0 test C:\Users\snova\Documents\tcs\Learnings\AIProjects\flowagent\packages\core
+> vitest run
+
+
+[7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mC:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/packages/core[39m
+
+ [32m✓[39m tests/tool-step.test.ts [2m ([22m[2m6 tests[22m[2m)[22m[90m 37[2mms[22m[39m
+ [32m✓[39m tests/streaming.test.ts [2m ([22m[2m7 tests[22m[2m)[22m[90m 17[2mms[22m[39m
+ [32m✓[39m tests/dryrun.test.ts [2m ([22m[2m6 tests[22m[2m)[22m[90m 58[2mms[22m[39m
+ [32m✓[39m tests/pipeline.test.ts [2m ([22m[2m6 tests[22m[2m)[22m[90m 46[2mms[22m[39m
+ [32m✓[39m tests/agent-step.test.ts [2m ([22m[2m13 tests[22m[2m)[22m[90m 51[2mms[22m[39m
+ [32m✓[39m tests/retry.test.ts [2m ([22m[2m7 tests[22m[2m)[22m[90m 178[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m      Tests [22m [1m[32m45 passed[39m[22m[90m (45)[39m
+[2m   Start at [22m 20:00:06
+[2m   Duration [22m 7.36s[2m (transform 4.86s, setup 2ms, collect 14.05s, tests 387ms, environment 3ms, prepare 11.27s)[22m
+

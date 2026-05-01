@@ -1,0 +1,51 @@
+{
+  "name": "create-pravaha-app",
+  "version": "0.1.0",
+  "description": "Create a new Pravaha project in seconds",
+  "type": "module",
+  "bin": {
+    "create-pravaha-app": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pravaham/pravaham.git",
+    "directory": "packages/create-pravaha-app"
+  },
+  "homepage": "https://pravaha.dev",
+  "bugs": {
+    "url": "https://github.com/pravaham/pravaham/issues"
+  },
+  "keywords": [
+    "pravaha",
+    "create",
+    "scaffold",
+    "ai",
+    "agent",
+    "llm"
+  ]
+}

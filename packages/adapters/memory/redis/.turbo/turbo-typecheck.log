@@ -1,0 +1,4 @@
+
+> @pravaha/adapter-memory-redis@0.1.0 typecheck C:\Users\snova\Documents\tcs\Learnings\AIProjects\flowagent\packages\adapters\memory\redis
+> tsc --noEmit
+

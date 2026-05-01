@@ -1,0 +1,56 @@
+{
+  "name": "@pravaha/adapter-openai",
+  "version": "0.1.0",
+  "description": "OpenAI adapter for Pravaha",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "openai": "^4.28.0",
+    "@pravaha/core": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pravaham/pravaham.git",
+    "directory": "packages/adapters/openai"
+  },
+  "homepage": "https://pravaha.dev",
+  "bugs": {
+    "url": "https://github.com/pravaham/pravaham/issues"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "llm",
+    "pipeline",
+    "pravaha",
+    "openai",
+    "gpt"
+  ]
+}

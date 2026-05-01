@@ -1,0 +1,21 @@
+{
+  "name": "@pravaha/example-support-ticket-triage",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Support ticket triage pipeline — Pravaha example",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@pravaha/adapter-trace-fs": "workspace:*",
+    "@pravaha/core": "workspace:*",
+    "@pravaha/plugin-cost-tracker": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

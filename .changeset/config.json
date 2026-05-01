@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [
+    [
+      "@pravaha/core",
+      "@pravaha/adapter-claude",
+      "@pravaha/adapter-claude-vertex",
+      "@pravaha/adapter-openai",
+      "@pravaha/adapter-ollama",
+      "@pravaha/adapter-memory-inmemory",
+      "@pravaha/adapter-memory-redis",
+      "@pravaha/adapter-trace-fs",
+      "@pravaha/plugin-cost-tracker",
+      "@pravaha/plugin-otel",
+      "@pravaha/cli"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}

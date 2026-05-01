@@ -1,0 +1,16 @@
+
+> @pravaha/adapter-openai@0.1.0 test C:\Users\snova\Documents\tcs\Learnings\AIProjects\flowagent\packages\adapters\openai
+> vitest run
+
+
+[7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mC:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/packages/adapters/openai[39m
+
+ [32m✓[39m tests/openai-streaming.test.ts [2m ([22m[2m5 tests[22m[2m)[22m[90m 27[2mms[22m[39m
+ [32m✓[39m tests/openai-tool-calling.test.ts [2m ([22m[2m5 tests[22m[2m)[22m[90m 49[2mms[22m[39m
+ [32m✓[39m tests/openai.test.ts [2m ([22m[2m11 tests[22m[2m)[22m[90m 96[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m21 passed[39m[22m[90m (21)[39m
+[2m   Start at [22m 20:00:06
+[2m   Duration [22m 7.97s[2m (transform 2.52s, setup 1ms, collect 8.28s, tests 172ms, environment 1ms, prepare 5.70s)[22m
+

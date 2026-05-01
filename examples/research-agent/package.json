@@ -1,0 +1,19 @@
+{
+  "name": "@pravaha/example-research-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@pravaha/core": "workspace:*",
+    "@pravaha/adapter-trace-fs": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

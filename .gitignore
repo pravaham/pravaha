@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.pravaha/
+*.tsbuildinfo
+
+# Docs build
+docs/.vitepress/dist
+docs/.vitepress/cache
+
+# Environment
+.env
+.env.local

@@ -1,0 +1,148 @@
+{
+  "runId": "32bf0e4f-f49a-4028-8468-26f7e1ac6f59",
+  "pipelineId": "support-ticket-triage",
+  "pipelineName": "Support Ticket Triage",
+  "status": "completed",
+  "startedAt": 1777265626778,
+  "completedAt": 1777265626779,
+  "durationMs": 1,
+  "events": [
+    {
+      "stepId": "classify-ticket",
+      "stepType": "transform",
+      "status": "completed",
+      "startedAt": 1777265626778,
+      "completedAt": 1777265626778,
+      "durationMs": 0,
+      "input": {
+        "id": "TKT-002",
+        "subject": "Application crashes on login",
+        "body": "Getting an error when I try to login. The app crashes immediately after entering password.",
+        "customerId": "CUST-456",
+        "priority": "critical"
+      },
+      "output": {
+        "ticket": {
+          "id": "TKT-002",
+          "subject": "Application crashes on login",
+          "body": "Getting an error when I try to login. The app crashes immediately after entering password.",
+          "customerId": "CUST-456",
+          "priority": "critical"
+        },
+        "category": "technical",
+        "confidence": 0.88,
+        "reasoning": "Technical issue keywords detected: error/bug/crash"
+      },
+      "metadata": {
+        "routedTo": "kb-lookup",
+        "routeReason": "Technical category — enriching with KB articles"
+      },
+      "id": "57a7df0c-b9d5-4c8f-9646-039afe5bd204",
+      "runId": "32bf0e4f-f49a-4028-8468-26f7e1ac6f59",
+      "pipelineId": "support-ticket-triage"
+    },
+    {
+      "stepId": "kb-lookup",
+      "stepType": "tool",
+      "status": "completed",
+      "startedAt": 1777265626778,
+      "completedAt": 1777265626778,
+      "durationMs": 0,
+      "input": {
+        "ticket": {
+          "id": "TKT-002",
+          "subject": "Application crashes on login",
+          "body": "Getting an error when I try to login. The app crashes immediately after entering password.",
+          "customerId": "CUST-456",
+          "priority": "critical"
+        },
+        "category": "technical",
+        "confidence": 0.88,
+        "reasoning": "Technical issue keywords detected: error/bug/crash"
+      },
+      "output": {
+        "ticket": {
+          "id": "TKT-002",
+          "subject": "Application crashes on login",
+          "body": "Getting an error when I try to login. The app crashes immediately after entering password.",
+          "customerId": "CUST-456",
+          "priority": "critical"
+        },
+        "category": "technical",
+        "confidence": 0.88,
+        "reasoning": "Technical issue keywords detected: error/bug/crash",
+        "kbArticles": [
+          {
+            "id": "KB-001",
+            "title": "Login Issues Troubleshooting",
+            "summary": "Steps to resolve common login failures"
+          },
+          {
+            "id": "KB-002",
+            "title": "Password Reset Procedure",
+            "summary": "How to reset user passwords via admin console"
+          }
+        ]
+      },
+      "metadata": {
+        "toolDescription": "Searches internal knowledge base for relevant solutions to technical issues",
+        "routedTo": "technical-response",
+        "routeReason": "Continue to step 'technical-response'"
+      },
+      "id": "3efdd64f-4985-487d-827a-29786a0a1783",
+      "runId": "32bf0e4f-f49a-4028-8468-26f7e1ac6f59",
+      "pipelineId": "support-ticket-triage"
+    },
+    {
+      "stepId": "technical-response",
+      "stepType": "llm:mock",
+      "status": "completed",
+      "startedAt": 1777265626778,
+      "completedAt": 1777265626779,
+      "durationMs": 1,
+      "input": {
+        "ticket": {
+          "id": "TKT-002",
+          "subject": "Application crashes on login",
+          "body": "Getting an error when I try to login. The app crashes immediately after entering password.",
+          "customerId": "CUST-456",
+          "priority": "critical"
+        },
+        "category": "technical",
+        "confidence": 0.88,
+        "reasoning": "Technical issue keywords detected: error/bug/crash",
+        "kbArticles": [
+          {
+            "id": "KB-001",
+            "title": "Login Issues Troubleshooting",
+            "summary": "Steps to resolve common login failures"
+          },
+          {
+            "id": "KB-002",
+            "title": "Password Reset Procedure",
+            "summary": "How to reset user passwords via admin console"
+          }
+        ]
+      },
+      "output": {
+        "ticketId": "TKT-002",
+        "category": "technical",
+        "response": "Dear Customer CUST-456, we have received your technical support request. Our engineering team is investigating. Reference: TKT-002",
+        "suggestedActions": [
+          "Check system status page",
+          "Collect error logs",
+          "Escalate to L2 if unresolved in 2h"
+        ],
+        "escalate": true
+      },
+      "metadata": {
+        "routedTo": null,
+        "routeReason": "Pipeline complete"
+      },
+      "id": "a5fdd167-0e08-4ee2-b473-91e44e2cf5b9",
+      "runId": "32bf0e4f-f49a-4028-8468-26f7e1ac6f59",
+      "pipelineId": "support-ticket-triage"
+    }
+  ],
+  "metadata": {}
+}

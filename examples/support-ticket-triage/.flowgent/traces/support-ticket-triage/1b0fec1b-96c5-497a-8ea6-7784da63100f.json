@@ -1,0 +1,84 @@
+{
+  "runId": "1b0fec1b-96c5-497a-8ea6-7784da63100f",
+  "pipelineId": "support-ticket-triage",
+  "pipelineName": "Support Ticket Triage",
+  "status": "completed",
+  "startedAt": 1777259716617,
+  "completedAt": 1777259716620,
+  "durationMs": 3,
+  "events": [
+    {
+      "stepId": "classify-ticket",
+      "stepType": "transform",
+      "status": "completed",
+      "startedAt": 1777259716617,
+      "completedAt": 1777259716619,
+      "durationMs": 2,
+      "input": {
+        "id": "TKT-001",
+        "subject": "Incorrect charge on my invoice",
+        "body": "I was charged twice for my subscription this month. Please refund the duplicate charge.",
+        "customerId": "CUST-123",
+        "priority": "high"
+      },
+      "output": {
+        "ticket": {
+          "id": "TKT-001",
+          "subject": "Incorrect charge on my invoice",
+          "body": "I was charged twice for my subscription this month. Please refund the duplicate charge.",
+          "customerId": "CUST-123",
+          "priority": "high"
+        },
+        "category": "billing",
+        "confidence": 0.92,
+        "reasoning": "Billing-related keywords detected: invoice/charge/refund/payment"
+      },
+      "metadata": {
+        "routedTo": "billing-response",
+        "routeReason": "Billing category detected"
+      },
+      "id": "b5c796b1-77af-4b9a-8aec-1e11526bba71",
+      "runId": "1b0fec1b-96c5-497a-8ea6-7784da63100f",
+      "pipelineId": "support-ticket-triage"
+    },
+    {
+      "stepId": "billing-response",
+      "stepType": "llm:mock",
+      "status": "completed",
+      "startedAt": 1777259716619,
+      "completedAt": 1777259716620,
+      "durationMs": 1,
+      "input": {
+        "ticket": {
+          "id": "TKT-001",
+          "subject": "Incorrect charge on my invoice",
+          "body": "I was charged twice for my subscription this month. Please refund the duplicate charge.",
+          "customerId": "CUST-123",
+          "priority": "high"
+        },
+        "category": "billing",
+        "confidence": 0.92,
+        "reasoning": "Billing-related keywords detected: invoice/charge/refund/payment"
+      },
+      "output": {
+        "ticketId": "TKT-001",
+        "category": "billing",
+        "response": "Dear Customer CUST-123, thank you for reaching out about your billing concern. Our billing team will review your account and respond within 1 business day. Reference: TKT-001",
+        "suggestedActions": [
+          "Review invoice history",
+          "Process refund if applicable",
+          "Update payment method if needed"
+        ],
+        "escalate": false
+      },
+      "metadata": {
+        "routedTo": null,
+        "routeReason": "Pipeline complete"
+      },
+      "id": "c8b74c17-4f48-4ef1-9b7a-c1d1f1192988",
+      "runId": "1b0fec1b-96c5-497a-8ea6-7784da63100f",
+      "pipelineId": "support-ticket-triage"
+    }
+  ],
+  "metadata": {}
+}

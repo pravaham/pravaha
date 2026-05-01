@@ -1,0 +1,58 @@
+{
+  "name": "@pravaha/adapter-claude-vertex",
+  "version": "0.1.0",
+  "description": "Google Cloud Vertex AI adapter for Pravaha — Claude via GCP",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@anthropic-ai/vertex-sdk": "^0.4.0",
+    "@pravaha/core": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pravaham/pravaham.git",
+    "directory": "packages/adapters/claude-vertex"
+  },
+  "homepage": "https://pravaha.dev",
+  "bugs": {
+    "url": "https://github.com/pravaham/pravaham/issues"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "llm",
+    "pipeline",
+    "pravaha",
+    "claude",
+    "anthropic",
+    "vertex",
+    "gcp"
+  ]
+}
