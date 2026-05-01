@@ -8,8 +8,8 @@
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/@pravaha/core?color=6366f1&label=%40pravaha%2Fcore" alt="npm version" />
-    <img src="https://img.shields.io/github/license/pravaha/pravaha?color=22c55e" alt="MIT license" />
-    <img src="https://img.shields.io/github/actions/workflow/status/pravaha/pravaha/ci.yml?label=CI" alt="CI" />
+    <img src="https://img.shields.io/github/license/pravaham/pravaha?color=22c55e" alt="MIT license" />
+    <img src="https://img.shields.io/github/actions/workflow/status/pravaham/pravaha/ci.yml?label=CI" alt="CI" />
   </p>
 </div>
 
