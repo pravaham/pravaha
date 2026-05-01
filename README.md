@@ -4,7 +4,7 @@
   <p>
     <a href="https://pravaha.dev">Docs</a> ·
     <a href="https://pravaha.dev/guide/getting-started">Quick Start</a> ·
-    <a href="https://github.com/pravaham/pravaham/issues">Issues</a>
+    <a href="https://github.com/pravaham/pravaha/issues">Issues</a>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/@pravaha/core?color=6366f1&label=%40pravaha%2Fcore" alt="npm version" />

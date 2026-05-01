@@ -160,6 +160,6 @@ npx pravaha trace list
 ## Learn More
 
 - [Pravaha Docs](https://pravaha.dev)
-- [GitHub](https://github.com/pravaham/pravaham)
+- [GitHub](https://github.com/pravaham/pravaha)
 `,
 }

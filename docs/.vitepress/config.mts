@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'Pravaha',
   description: 'Composable agentic AI workflows. No magic, no bloat.',
-  base: '/pravaham/',
+  base: '/pravaha/',
   ignoreDeadLinks: true,
 
   head: [
@@ -23,7 +23,7 @@ export default defineConfig({
         text: 'v0.1.0',
         items: [
           { text: 'Changelog', link: '/changelog' },
-          { text: 'GitHub', link: 'https://github.com/pravaham/pravaham' },
+          { text: 'GitHub', link: 'https://github.com/pravaham/pravaha' },
         ],
       },
     ],
@@ -97,7 +97,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/pravaham/pravaham' },
+      { icon: 'github', link: 'https://github.com/pravaham/pravaha' },
     ],
 
     footer: {
@@ -106,7 +106,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/pravaham/pravaham/edit/main/docs/:path',
+      pattern: 'https://github.com/pravaham/pravaha/edit/main/docs/:path',
       text: 'Edit this page on GitHub',
     },
 
