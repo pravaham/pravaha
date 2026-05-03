@@ -9,7 +9,10 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'og:title', content: 'Pravaha' }],
-    ['meta', { name: 'og:description', content: 'Composable agentic AI workflows. No magic, no bloat.' }],
+    [
+      'meta',
+      { name: 'og:description', content: 'Composable agentic AI workflows. No magic, no bloat.' },
+    ],
   ],
 
   themeConfig: {
@@ -77,9 +80,7 @@ export default defineConfig({
         },
         {
           text: 'Streaming',
-          items: [
-            { text: 'Streaming Responses', link: '/guide/streaming' },
-          ],
+          items: [{ text: 'Streaming Responses', link: '/guide/streaming' }],
         },
       ],
       '/api/': [
@@ -96,9 +97,7 @@ export default defineConfig({
       ],
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/pravaham/pravaha' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/pravaham/pravaha' }],
 
     footer: {
       message: 'Released under the MIT License.',

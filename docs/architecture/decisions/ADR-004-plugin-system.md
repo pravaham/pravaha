@@ -10,6 +10,7 @@ Cross-cutting concerns like cost tracking, telemetry, alerting, and audit loggin
 ## Decision
 
 Pravaha provides a `PravahaPlugin` interface with optional lifecycle hooks:
+
 - `onPipelineStart` — called when a run begins
 - `onStepComplete` — called after every step (success or failure)
 - `onPipelineComplete` — called when a run finishes
@@ -22,12 +23,14 @@ Plugins are registered at pipeline construction time and cannot be added to a ru
 ## Consequences
 
 **Positive:**
+
 - Cost tracking, observability, alerting — all zero-touch additions
 - Pipeline logic is unmodified by cross-cutting concerns
 - Plugin failure isolation prevents cascading failures
 - Plugins are testable in isolation
 
 **Negative:**
+
 - Plugins cannot alter pipeline execution flow (by design)
 - Async plugins slow each step by the hook duration
 - Plugin errors are silent (logged only) — requires monitoring

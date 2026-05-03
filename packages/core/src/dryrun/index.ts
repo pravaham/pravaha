@@ -105,9 +105,7 @@ export function buildDryRunPipeline<TInput, TOutput>(
 
     const mockOutput = options.mockResponses[stepId]
     const step =
-      mockOutput !== undefined
-        ? new MockStep(registered.step, mockOutput)
-        : registered.step
+      mockOutput !== undefined ? new MockStep(registered.step, mockOutput) : registered.step
 
     builder.step(step, registered.router)
   }

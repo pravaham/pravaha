@@ -43,10 +43,7 @@
         "retryPolicy": {
           "maxAttempts": 2,
           "backoffMs": 500,
-          "retryOn": [
-            null,
-            null
-          ]
+          "retryOn": [null, null]
         },
         "routedTo": "parse-agent-response",
         "routeReason": "Continue to step 'parse-agent-response'"

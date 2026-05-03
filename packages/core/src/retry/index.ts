@@ -111,11 +111,7 @@ class RetryStep<TInput, TOutput> implements Step<TInput, TOutput> {
         const pravahaError =
           err instanceof PravahaError
             ? err
-            : new StepExecutionError(
-                this.id,
-                err instanceof Error ? err.message : String(err),
-                err,
-              )
+            : new StepExecutionError(this.id, err instanceof Error ? err.message : String(err), err)
 
         if (!this.shouldRetry(pravahaError)) {
           throw pravahaError

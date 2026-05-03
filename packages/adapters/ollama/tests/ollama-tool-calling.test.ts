@@ -33,10 +33,7 @@ describe('OllamaToolCallingAdapter', () => {
     const adapter = new OllamaToolCallingAdapter()
     mockOllamaResponse('This is a plain text answer')
 
-    const result = await adapter.chat(
-      [{ role: 'user', content: 'Hello' }],
-      [searchTool],
-    )
+    const result = await adapter.chat([{ role: 'user', content: 'Hello' }], [searchTool])
 
     expect(result.type).toBe('text')
     if (result.type === 'text') expect(result.content).toBe('This is a plain text answer')
@@ -74,10 +71,7 @@ describe('OllamaToolCallingAdapter', () => {
     const adapter = new OllamaToolCallingAdapter()
     mockOllamaResponse('Answer')
 
-    await adapter.chat(
-      [{ role: 'user', content: 'Hello' }],
-      [searchTool],
-    )
+    await adapter.chat([{ role: 'user', content: 'Hello' }], [searchTool])
 
     const body = JSON.parse(mockFetch.mock.calls[0][1].body as string) as {
       messages: Array<{ role: string; content: string }>

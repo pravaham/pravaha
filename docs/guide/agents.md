@@ -43,12 +43,11 @@ const parser = defineAgentOutputParser({
 })
 
 // In pipeline
-pipeline
-  .step(agent, new LinearRouter('to-parser', 'parse'))
-  .step(parser)
+pipeline.step(agent, new LinearRouter('to-parser', 'parse')).step(parser)
 ```
 
 Three parsing strategies:
+
 - `json` — parses JSON, strips markdown fences automatically
 - `regex` — extracts pattern from response
 - `custom` — full control with a parse function
@@ -68,11 +67,11 @@ const resilientAgent = withRetry(agent, {
 
 ## Provider Adapters
 
-| Provider | Adapter |
-|---|---|
-| Anthropic Claude | `ClaudeToolCallingAdapter` from `@pravaha/adapter-claude` |
-| GCP Vertex AI | `ClaudeVertexToolCallingAdapter` from `@pravaha/adapter-claude-vertex` |
-| OpenAI | `OpenAIToolCallingAdapter` from `@pravaha/adapter-openai` |
-| Ollama (local) | `OllamaToolCallingAdapter` from `@pravaha/adapter-ollama` |
+| Provider         | Adapter                                                                |
+| ---------------- | ---------------------------------------------------------------------- |
+| Anthropic Claude | `ClaudeToolCallingAdapter` from `@pravaha/adapter-claude`              |
+| GCP Vertex AI    | `ClaudeVertexToolCallingAdapter` from `@pravaha/adapter-claude-vertex` |
+| OpenAI           | `OpenAIToolCallingAdapter` from `@pravaha/adapter-openai`              |
+| Ollama (local)   | `OllamaToolCallingAdapter` from `@pravaha/adapter-ollama`              |
 
 Swap adapters without changing any pipeline code.

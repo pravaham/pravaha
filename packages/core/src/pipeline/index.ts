@@ -94,16 +94,10 @@ export class Pipeline<TInput, TOutput> {
     initialState: Record<string, unknown> = {},
   ): Promise<PipelineResult<TOutput>> {
     if (!this.entryStepId) {
-      throw new PipelineConfigError(
-        `Pipeline '${this.config.id}' has no steps registered`,
-      )
+      throw new PipelineConfigError(`Pipeline '${this.config.id}' has no steps registered`)
     }
 
-    const context = createExecutionContext(
-      this.config.id,
-      initialState,
-      this.config.metadata,
-    )
+    const context = createExecutionContext(this.config.id, initialState, this.config.metadata)
     const collector = new TraceCollector(context.runId, this.config.id, this.config.name)
 
     await this.plugins.emit('onPipelineStart', context)

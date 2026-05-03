@@ -156,7 +156,10 @@ export class ClaudeVertexLLMStep extends BaseStep<LLMRequest, LLMResponse> {
 
       const content = response.content[0]
       if (!content || content.type !== 'text') {
-        throw new LLMInvalidResponseError('claude-vertex', 'Expected text content block in response')
+        throw new LLMInvalidResponseError(
+          'claude-vertex',
+          'Expected text content block in response',
+        )
       }
 
       return {
@@ -187,7 +190,10 @@ export class ClaudeVertexLLMStep extends BaseStep<LLMRequest, LLMResponse> {
     }
   }
 
-  override async execute(input: LLMRequest, context: ExecutionContext): Promise<StepResult<LLMResponse>> {
+  override async execute(
+    input: LLMRequest,
+    context: ExecutionContext,
+  ): Promise<StepResult<LLMResponse>> {
     const result = await super.execute(input, context)
     const updatedContext = withMessages(result.context, [
       ...input.messages,

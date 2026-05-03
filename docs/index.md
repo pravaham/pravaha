@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  name: "⬡ Pravaha"
-  text: "Composable agentic AI workflows"
-  tagline: "No magic. No bloat. Full observability."
+  name: '⬡ Pravaha'
+  text: 'Composable agentic AI workflows'
+  tagline: 'No magic. No bloat. Full observability.'
   actions:
     - theme: brand
       text: Get Started

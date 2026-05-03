@@ -41,10 +41,7 @@ describe('OllamaLLMStep', () => {
     mockOllamaResponse('Hello from Llama')
 
     const ctx = createExecutionContext('pipe-1')
-    const result = await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      ctx,
-    )
+    const result = await step.execute({ messages: [{ role: 'user', content: 'Hi' }] }, ctx)
 
     expect(result.output.content).toBe('Hello from Llama')
     expect(result.output.model).toBe('llama3.2')
@@ -58,10 +55,7 @@ describe('OllamaLLMStep', () => {
     mockOllamaResponse('Response')
 
     const ctx = createExecutionContext('pipe-1')
-    const result = await step.execute(
-      { messages: [{ role: 'user', content: 'Hello' }] },
-      ctx,
-    )
+    const result = await step.execute({ messages: [{ role: 'user', content: 'Hello' }] }, ctx)
 
     expect(result.context.messages).toHaveLength(2)
     expect(result.context.messages[1]?.role).toBe('assistant')
@@ -72,10 +66,7 @@ describe('OllamaLLMStep', () => {
     mockOllamaResponse('Response', 'mistral')
 
     const ctx = createExecutionContext('pipe-1')
-    await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }], model: 'mistral' },
-      ctx,
-    )
+    await step.execute({ messages: [{ role: 'user', content: 'Hi' }], model: 'mistral' }, ctx)
 
     const calledBody = JSON.parse(mockFetch.mock.calls[0][1].body as string) as { model: string }
     expect(calledBody.model).toBe('mistral')
@@ -114,10 +105,7 @@ describe('OllamaLLMStep', () => {
     mockOllamaResponse('Response')
 
     const ctx = createExecutionContext('pipe-1')
-    const result = await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      ctx,
-    )
+    const result = await step.execute({ messages: [{ role: 'user', content: 'Hi' }] }, ctx)
 
     expect(result.output.metadata?.ollamaBaseUrl).toBe('http://my-ollama-server:11434')
   })
@@ -158,10 +146,7 @@ describe('OllamaLLMStep', () => {
     })
 
     const ctx = createExecutionContext('pipe-1')
-    const result = await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      ctx,
-    )
+    const result = await step.execute({ messages: [{ role: 'user', content: 'Hi' }] }, ctx)
 
     expect(result.output.usage.totalTokens).toBe(0)
   })

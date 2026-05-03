@@ -37,11 +37,13 @@ const webSearchTool: ToolDefinition<SearchInput, SearchOutput> = {
     maxResults: z.number().min(1).max(10),
   }),
   outputSchema: z.object({
-    results: z.array(z.object({
-      title: z.string(),
-      url: z.string(),
-      snippet: z.string(),
-    })),
+    results: z.array(
+      z.object({
+        title: z.string(),
+        url: z.string(),
+        snippet: z.string(),
+      }),
+    ),
   }),
   execute: async ({ query, maxResults }) => {
     // Production: use Tavily, Serper, or Brave Search API
@@ -84,7 +86,11 @@ const researchMockAdapter = {
       return {
         type: 'tool_calls' as const,
         toolCalls: [
-          { id: 'tc-1', toolId: 'web-search', input: { query: 'agentic AI frameworks 2024', maxResults: 3 } },
+          {
+            id: 'tc-1',
+            toolId: 'web-search',
+            input: { query: 'agentic AI frameworks 2024', maxResults: 3 },
+          },
         ],
         usage: { promptTokens: 60, completionTokens: 25, totalTokens: 85 },
         model: 'mock',
@@ -94,7 +100,8 @@ const researchMockAdapter = {
       type: 'text' as const,
       content: JSON.stringify({
         title: 'Agentic AI Frameworks: State of the Market 2024',
-        summary: 'The agentic AI space is rapidly evolving with frameworks focusing on tool calling, observability, and production reliability.',
+        summary:
+          'The agentic AI space is rapidly evolving with frameworks focusing on tool calling, observability, and production reliability.',
         keyFindings: [
           'LangChain dominates but developers seek simpler alternatives',
           'Observability and debugging are top pain points',

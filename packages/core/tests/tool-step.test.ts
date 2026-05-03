@@ -55,7 +55,11 @@ describe('ToolStep', () => {
       execute: async (input) => input,
     })
 
-    const pipeline = new PipelineBuilder({ id: 'validation-test', name: 'Validation Test', version: '1.0.0' })
+    const pipeline = new PipelineBuilder({
+      id: 'validation-test',
+      name: 'Validation Test',
+      version: '1.0.0',
+    })
       .step(tool)
       .build()
 
@@ -127,9 +131,11 @@ describe('ToolStep', () => {
       execute: async ({ data }) => ({ result: data.toUpperCase() }),
     })
 
-    const pipeline = new PipelineBuilder<{ id: string }, { result: string }>(
-      { id: 'chain-test', name: 'Chain Test', version: '1.0.0' },
-    )
+    const pipeline = new PipelineBuilder<{ id: string }, { result: string }>({
+      id: 'chain-test',
+      name: 'Chain Test',
+      version: '1.0.0',
+    })
       .step(fetchData, new LinearRouter('fetch-to-process', 'process'))
       .step(processData)
       .build()

@@ -8,7 +8,10 @@ import {
   BatchSpanProcessor,
 } from '@opentelemetry/sdk-trace-base'
 import { Resource } from '@opentelemetry/resources'
-import { SEMRESATTRS_SERVICE_NAME, SEMRESATTRS_SERVICE_VERSION } from '@opentelemetry/semantic-conventions'
+import {
+  SEMRESATTRS_SERVICE_NAME,
+  SEMRESATTRS_SERVICE_VERSION,
+} from '@opentelemetry/semantic-conventions'
 import type { PravahaPlugin, Trace, TraceEvent, ExecutionContext } from '@pravaha/core'
 import { PravahaError } from '@pravaha/core'
 
@@ -177,7 +180,8 @@ export class OtelPlugin implements PravahaPlugin {
     if (output?.['usage'] && typeof output['usage'] === 'object') {
       const usage = output['usage'] as Record<string, number>
       if (usage['promptTokens']) stepSpan.setAttribute('llm.prompt_tokens', usage['promptTokens'])
-      if (usage['completionTokens']) stepSpan.setAttribute('llm.completion_tokens', usage['completionTokens'])
+      if (usage['completionTokens'])
+        stepSpan.setAttribute('llm.completion_tokens', usage['completionTokens'])
       if (usage['totalTokens']) stepSpan.setAttribute('llm.total_tokens', usage['totalTokens'])
     }
 

@@ -16,9 +16,9 @@ pnpm start
 
 ## Extend to Production
 
-| Swap this mock | With this real implementation |
-|---|---|
-| `ClassifyTicketStep` keyword logic | `ClaudeLLMStep` prompt-based classifier |
-| `BillingResponseStep` template | `ClaudeLLMStep` with billing context |
-| No memory | `InMemoryStore` or Redis-backed store for ticket history |
-| No trace persistence | Custom `TraceStore` → PostgreSQL / Supabase |
+| Swap this mock                     | With this real implementation                            |
+| ---------------------------------- | -------------------------------------------------------- |
+| `ClassifyTicketStep` keyword logic | `ClaudeLLMStep` prompt-based classifier                  |
+| `BillingResponseStep` template     | `ClaudeLLMStep` with billing context                     |
+| No memory                          | `InMemoryStore` or Redis-backed store for ticket history |
+| No trace persistence               | Custom `TraceStore` → PostgreSQL / Supabase              |

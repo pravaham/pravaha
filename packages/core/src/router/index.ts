@@ -52,10 +52,7 @@ export class ConditionalRouter<TOutput> implements Router<TOutput> {
       return { nextStepId: this.fallback, reason: 'Fallback route' }
     }
 
-    throw new RouterError(
-      this.id,
-      `No matching route for output: ${JSON.stringify(output)}`,
-    )
+    throw new RouterError(this.id, `No matching route for output: ${JSON.stringify(output)}`)
   }
 }
 

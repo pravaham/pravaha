@@ -70,5 +70,8 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Format check
+        run: pnpm prettier --check .
+
       - name: Check pack output
         run: pnpm --filter "@pravaha/*" exec npm pack --dry-run

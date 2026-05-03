@@ -9,13 +9,7 @@ import {
 } from '../src/index.js'
 
 function makeStep(fn: () => string) {
-  return new TransformStep(
-    'test-step',
-    'Test Step',
-    z.string(),
-    z.string(),
-    fn,
-  )
+  return new TransformStep('test-step', 'Test Step', z.string(), z.string(), fn)
 }
 
 describe('withRetry', () => {

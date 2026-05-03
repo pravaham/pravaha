@@ -56,9 +56,13 @@ function openBrowser(url: string): void {
   const { platform } = process
 
   const command =
-    platform === 'win32' ? `start "" "${url}"` :
-    platform === 'darwin' ? `open "${url}"` :
-    `xdg-open "${url}"`
+    platform === 'win32'
+      ? `start "" "${url}"`
+      : platform === 'darwin'
+        ? `open "${url}"`
+        : `xdg-open "${url}"`
 
-  exec(command, () => { /* non-critical */ })
+  exec(command, () => {
+    /* non-critical */
+  })
 }

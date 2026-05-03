@@ -12,6 +12,7 @@ Shared mutable state is the primary source of subtle bugs in multi-step pipeline
 `ExecutionContext` is immutable. Steps receive a context and return a new context. Mutation is impossible at the type level — all properties are `readonly` and the object is frozen at runtime via `Object.freeze`.
 
 Context updates use pure functions:
+
 - `withMessages(ctx, messages)` — appends messages
 - `withState(ctx, state)` — merges state
 - `withDepth(ctx)` — increments execution depth
@@ -21,11 +22,13 @@ The pipeline runner applies these functions after each step and threads the upda
 ## Consequences
 
 **Positive:**
+
 - Each step is independently testable with explicit inputs
 - No race conditions in async pipelines
 - Context changes are explicit and traceable
 - Time-travel debugging: any intermediate context can be replayed
 
 **Negative:**
+
 - Object allocation on every step (shallow copies via spread)
 - Developers new to functional patterns may find this unfamiliar

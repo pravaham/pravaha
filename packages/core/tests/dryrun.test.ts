@@ -23,38 +23,32 @@ type ClassifyOutput = z.infer<typeof ClassifySchema>
 type ResponseOutput = z.infer<typeof ResponseSchema>
 
 function buildTestPipeline() {
-  const classify = new TransformStep(
-    'classify',
-    'Classify',
-    z.string(),
-    ClassifySchema,
-    () => ({ category: 'general' as const, confidence: 0.5, reasoning: 'real' }),
-  )
+  const classify = new TransformStep('classify', 'Classify', z.string(), ClassifySchema, () => ({
+    category: 'general' as const,
+    confidence: 0.5,
+    reasoning: 'real',
+  }))
 
-  const billing = new TransformStep(
-    'billing',
-    'Billing',
-    ClassifySchema,
-    ResponseSchema,
-    () => ({ response: 'real billing response', escalate: false }),
-  )
+  const billing = new TransformStep('billing', 'Billing', ClassifySchema, ResponseSchema, () => ({
+    response: 'real billing response',
+    escalate: false,
+  }))
 
-  const general = new TransformStep(
-    'general',
-    'General',
-    ClassifySchema,
-    ResponseSchema,
-    () => ({ response: 'real general response', escalate: false }),
-  )
+  const general = new TransformStep('general', 'General', ClassifySchema, ResponseSchema, () => ({
+    response: 'real general response',
+    escalate: false,
+  }))
 
   const router = new ConditionalRouter<ClassifyOutput>('router', 'Router', [
     { condition: (o) => o.category === 'billing', nextStepId: 'billing', reason: 'Is billing' },
     { condition: (o) => o.category === 'general', nextStepId: 'general', reason: 'Is general' },
   ])
 
-  return new PipelineBuilder<string, ResponseOutput>(
-    { id: 'test-pipeline', name: 'Test Pipeline', version: '1.0.0' },
-  )
+  return new PipelineBuilder<string, ResponseOutput>({
+    id: 'test-pipeline',
+    name: 'Test Pipeline',
+    version: '1.0.0',
+  })
     .step(classify, router)
     .step(billing, new LinearRouter('billing-end', null))
     .step(general, new LinearRouter('general-end', null))

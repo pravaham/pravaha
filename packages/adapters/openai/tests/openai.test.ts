@@ -38,10 +38,7 @@ describe('OpenAILLMStep', () => {
     const step = makeStep()
     mockClient(step, validResponse)
     const ctx = createExecutionContext('pipe-1')
-    const result = await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      ctx,
-    )
+    const result = await step.execute({ messages: [{ role: 'user', content: 'Hi' }] }, ctx)
     expect(result.output.content).toBe('Hello from OpenAI')
     expect(result.output.model).toBe('gpt-4o')
     expect(result.output.usage.totalTokens).toBe(15)
@@ -51,10 +48,7 @@ describe('OpenAILLMStep', () => {
     const step = makeStep()
     mockClient(step, validResponse)
     const ctx = createExecutionContext('pipe-1')
-    const result = await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      ctx,
-    )
+    const result = await step.execute({ messages: [{ role: 'user', content: 'Hi' }] }, ctx)
     expect(result.context.messages).toHaveLength(2)
     expect(result.context.messages[0]?.role).toBe('user')
     expect(result.context.messages[1]?.role).toBe('assistant')
@@ -86,10 +80,13 @@ describe('OpenAILLMStep', () => {
     step.client = { chat: { completions: { create: mockCreate } } }
 
     const ctx = createExecutionContext('pipe-1')
-    await step.execute({
-      messages: [{ role: 'user', content: 'Hi' }],
-      model: 'gpt-4-turbo',
-    }, ctx)
+    await step.execute(
+      {
+        messages: [{ role: 'user', content: 'Hi' }],
+        model: 'gpt-4-turbo',
+      },
+      ctx,
+    )
 
     expect(mockCreate.mock.calls[0][0].model).toBe('gpt-4-turbo')
   })
@@ -175,10 +172,7 @@ describe('OpenAILLMStep', () => {
     })
 
     const ctx = createExecutionContext('pipe-1')
-    const result = await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      ctx,
-    )
+    const result = await step.execute({ messages: [{ role: 'user', content: 'Hi' }] }, ctx)
     expect(result.output.usage.totalTokens).toBe(0)
     expect(result.output.usage.promptTokens).toBe(0)
     expect(result.output.usage.completionTokens).toBe(0)

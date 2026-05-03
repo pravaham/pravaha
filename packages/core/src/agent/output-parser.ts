@@ -100,7 +100,9 @@ export class AgentOutputParser<TOutput> extends BaseStep<AgentStepOutput, TOutpu
         return Promise.resolve(this.parseJson(content))
 
       case 'regex':
-        return Promise.resolve(this.parseRegex(content, this.strategy.pattern, this.strategy.groupIndex))
+        return Promise.resolve(
+          this.parseRegex(content, this.strategy.pattern, this.strategy.groupIndex),
+        )
 
       case 'custom':
         return Promise.resolve(this.parseCustom(content, this.strategy.parse))

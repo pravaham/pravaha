@@ -257,7 +257,8 @@ export class ClaudeToolCallingAdapter implements ToolCallingAdapter {
       return { type: 'text', content: textBlock.text, usage, model: response.model }
     } catch (err) {
       if (err instanceof LLMInvalidResponseError) throw err
-      if (err instanceof Anthropic.RateLimitError) throw new LLMRateLimitError('claude', undefined, err)
+      if (err instanceof Anthropic.RateLimitError)
+        throw new LLMRateLimitError('claude', undefined, err)
       if (err instanceof Anthropic.APIConnectionTimeoutError)
         throw new LLMTimeoutError('claude', this.config.timeoutMs ?? 60_000, err)
       throw new LLMInvalidResponseError(
@@ -373,10 +374,7 @@ export class ClaudeStreamingLLMStep extends BaseStreamingStep {
       })
 
       for await (const event of stream) {
-        if (
-          event.type === 'content_block_delta' &&
-          event.delta.type === 'text_delta'
-        ) {
+        if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
           yield event.delta.text
         }
       }
@@ -389,9 +387,15 @@ export class ClaudeStreamingLLMStep extends BaseStreamingStep {
         totalTokens: finalMessage.usage.input_tokens + finalMessage.usage.output_tokens,
       }
     } catch (err) {
-      if (err instanceof Anthropic.RateLimitError) throw new LLMRateLimitError('claude', undefined, err)
-      if (err instanceof Anthropic.APIConnectionTimeoutError) throw new LLMTimeoutError('claude', 60_000, err)
-      throw new LLMInvalidResponseError('claude', err instanceof Error ? err.message : String(err), err)
+      if (err instanceof Anthropic.RateLimitError)
+        throw new LLMRateLimitError('claude', undefined, err)
+      if (err instanceof Anthropic.APIConnectionTimeoutError)
+        throw new LLMTimeoutError('claude', 60_000, err)
+      throw new LLMInvalidResponseError(
+        'claude',
+        err instanceof Error ? err.message : String(err),
+        err,
+      )
     }
   }
 

@@ -26,12 +26,8 @@ describe('OtelPlugin', () => {
     const registry = new PluginRegistry()
     registry.register(plugin)
 
-    const step = new TransformStep(
-      'test-step',
-      'Test Step',
-      z.string(),
-      z.string(),
-      (s) => s.toUpperCase(),
+    const step = new TransformStep('test-step', 'Test Step', z.string(), z.string(), (s) =>
+      s.toUpperCase(),
     )
 
     const pipeline = new PipelineBuilder(
@@ -74,15 +70,9 @@ describe('OtelPlugin', () => {
     const registry = new PluginRegistry()
     registry.register(plugin)
 
-    const failStep = new TransformStep(
-      'fail-step',
-      'Fail',
-      z.string(),
-      z.string(),
-      () => {
-        throw new Error('Deliberate failure')
-      },
-    )
+    const failStep = new TransformStep('fail-step', 'Fail', z.string(), z.string(), () => {
+      throw new Error('Deliberate failure')
+    })
 
     const pipeline = new PipelineBuilder(
       { id: 'fail-test', name: 'Fail Test', version: '1.0.0' },

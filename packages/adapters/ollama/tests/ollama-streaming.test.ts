@@ -59,11 +59,11 @@ describe('OllamaStreamingLLMStep', () => {
     const onComplete = vi.fn()
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for await (const _ of step.stream(
-      { messages: [{ role: 'user', content: 'Hello' }] },
-      ctx,
-      { onComplete },
-    )) { /* consume */ }
+    for await (const _ of step.stream({ messages: [{ role: 'user', content: 'Hello' }] }, ctx, {
+      onComplete,
+    })) {
+      /* consume */
+    }
 
     expect(onComplete.mock.calls[0]?.[0]?.usage.promptTokens).toBe(10)
     expect(onComplete.mock.calls[0]?.[0]?.usage.completionTokens).toBe(5)
@@ -77,7 +77,13 @@ describe('OllamaStreamingLLMStep', () => {
       body: makeNdjsonStream([
         JSON.stringify({ model: 'llama3.2', message: { content: 'A' }, done: false }),
         JSON.stringify({ model: 'llama3.2', message: { content: 'B' }, done: false }),
-        JSON.stringify({ model: 'llama3.2', message: { content: 'C' }, done: true, prompt_eval_count: 1, eval_count: 3 }),
+        JSON.stringify({
+          model: 'llama3.2',
+          message: { content: 'C' },
+          done: true,
+          prompt_eval_count: 1,
+          eval_count: 3,
+        }),
       ]),
     })
 

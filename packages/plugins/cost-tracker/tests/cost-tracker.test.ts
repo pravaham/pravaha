@@ -1,7 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { CostTrackerPlugin } from '../src/index.js'
 
-function makeTraceEvent(overrides: Partial<Parameters<CostTrackerPlugin['onStepComplete']>[0]> = {}) {
+function makeTraceEvent(
+  overrides: Partial<Parameters<CostTrackerPlugin['onStepComplete']>[0]> = {},
+) {
   return {
     id: 'evt-1',
     stepId: 'llm-step',
@@ -52,14 +54,16 @@ describe('CostTrackerPlugin', () => {
 
   it('ignores unknown models', () => {
     const plugin = new CostTrackerPlugin()
-    plugin.onStepComplete(makeTraceEvent({
-      runId: 'run-3',
-      output: {
-        content: 'Hi',
-        model: 'unknown-model-xyz',
-        usage: { promptTokens: 100, completionTokens: 50, totalTokens: 150 },
-      },
-    }))
+    plugin.onStepComplete(
+      makeTraceEvent({
+        runId: 'run-3',
+        output: {
+          content: 'Hi',
+          model: 'unknown-model-xyz',
+          usage: { promptTokens: 100, completionTokens: 50, totalTokens: 150 },
+        },
+      }),
+    )
     expect(plugin.getCostSummary('run-3')).toBeNull()
   })
 
@@ -93,13 +97,15 @@ describe('CostTrackerPlugin', () => {
     const plugin = new CostTrackerPlugin()
     // 1000 prompt tokens at $0.003/1k = $0.003
     // 500 completion tokens at $0.015/1k = $0.0075
-    plugin.onStepComplete(makeTraceEvent({
-      output: {
-        content: 'Hi',
-        model: 'claude-sonnet-4-5',
-        usage: { promptTokens: 1000, completionTokens: 500, totalTokens: 1500 },
-      },
-    }))
+    plugin.onStepComplete(
+      makeTraceEvent({
+        output: {
+          content: 'Hi',
+          model: 'claude-sonnet-4-5',
+          usage: { promptTokens: 1000, completionTokens: 500, totalTokens: 1500 },
+        },
+      }),
+    )
     const summary = plugin.getCostSummary('run-1')
     expect(summary?.totalCostUsd).toBeCloseTo(0.0105, 6)
   })

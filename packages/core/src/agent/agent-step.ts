@@ -88,7 +88,7 @@ export class AgentStep extends BaseStep<string, AgentStepOutput> {
 
   private readonly adapter: ToolCallingAdapter
   private readonly tools: readonly ToolDefinition<unknown, unknown>[]
-private readonly toolMap: ReadonlyMap<string, ToolDefinition<unknown, unknown>>
+  private readonly toolMap: ReadonlyMap<string, ToolDefinition<unknown, unknown>>
   private readonly systemPrompt: string | undefined
   private readonly maxIterations: number
 

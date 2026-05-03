@@ -90,6 +90,11 @@ export type { RetryPolicy } from './retry/index.js'
 export { withRetry } from './retry/index.js'
 
 // Streaming
-export type { StreamChunk, StreamChunkCallback, StreamOptions, StreamingCapable } from './streaming/index.js'
+export type {
+  StreamChunk,
+  StreamChunkCallback,
+  StreamOptions,
+  StreamingCapable,
+} from './streaming/index.js'
 export { isStreamingStep, collectStream } from './streaming/index.js'
 export { BaseStreamingStep } from './streaming/base-streaming-step.js'

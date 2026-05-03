@@ -20,8 +20,8 @@ const pipeline = new PipelineBuilder({
   .build()
 
 const result = await pipeline.run(input)
-result.output  // final typed output
-result.trace   // complete execution record
+result.output // final typed output
+result.trace // complete execution record
 ```
 
 ## Step
@@ -75,16 +75,16 @@ A Trace is the complete record of a pipeline run.
 Produced automatically — no configuration needed.
 
 ```typescript
-result.trace.runId        // unique run identifier
-result.trace.status       // 'completed' | 'failed'
-result.trace.durationMs   // total wall-clock time
-result.trace.events       // one TraceEvent per step
+result.trace.runId // unique run identifier
+result.trace.status // 'completed' | 'failed'
+result.trace.durationMs // total wall-clock time
+result.trace.events // one TraceEvent per step
 
-result.trace.events[0].stepId      // which step
-result.trace.events[0].input       // what went in
-result.trace.events[0].output      // what came out
-result.trace.events[0].durationMs  // how long it took
-result.trace.events[0].error       // error details if failed
+result.trace.events[0].stepId // which step
+result.trace.events[0].input // what went in
+result.trace.events[0].output // what came out
+result.trace.events[0].durationMs // how long it took
+result.trace.events[0].error // error details if failed
 ```
 
 ## ExecutionContext

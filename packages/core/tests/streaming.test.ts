@@ -63,7 +63,9 @@ describe('collectStream', () => {
     const step = makeMockStreamingStep()
     const onChunk = vi.fn()
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for await (const _ of step.stream('input', {}, { onChunk })) { /* consume */ }
+    for await (const _ of step.stream('input', {}, { onChunk })) {
+      /* consume */
+    }
     expect(onChunk).toHaveBeenCalledTimes(4)
   })
 
@@ -71,7 +73,9 @@ describe('collectStream', () => {
     const step = makeMockStreamingStep()
     const onComplete = vi.fn()
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for await (const _ of step.stream('input', {}, { onComplete })) { /* consume */ }
+    for await (const _ of step.stream('input', {}, { onComplete })) {
+      /* consume */
+    }
     expect(onComplete).toHaveBeenCalledOnce()
     expect(onComplete.mock.calls[0]?.[0]?.content).toBe('Hello world!')
   })

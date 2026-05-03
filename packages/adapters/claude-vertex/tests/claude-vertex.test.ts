@@ -43,10 +43,7 @@ describe('ClaudeVertexLLMStep', () => {
     step.client = { messages: { create: mockCreate } }
 
     const context = createExecutionContext('test-pipeline')
-    await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      context,
-    )
+    await step.execute({ messages: [{ role: 'user', content: 'Hi' }] }, context)
 
     expect(mockCreate).toHaveBeenCalledWith(
       expect.objectContaining({ model: 'claude-3-5-sonnet@20241022' }),
@@ -135,10 +132,7 @@ describe('ClaudeVertexLLMStep', () => {
     }
 
     const context = createExecutionContext('test-pipeline')
-    const result = await step.execute(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      context,
-    )
+    const result = await step.execute({ messages: [{ role: 'user', content: 'Hi' }] }, context)
 
     expect(result.output.metadata?.['vertexProjectId']).toBe('unicredit-prod')
     expect(result.output.metadata?.['vertexRegion']).toBe('europe-west1')

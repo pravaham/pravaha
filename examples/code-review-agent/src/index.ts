@@ -33,11 +33,13 @@ const DiffSchema = z.object({
 const ReviewSchema = z.object({
   verdict: z.enum(['approve', 'request_changes', 'comment']),
   summary: z.string(),
-  issues: z.array(z.object({
-    severity: z.enum(['critical', 'major', 'minor', 'suggestion']),
-    description: z.string(),
-    line: z.string().optional(),
-  })),
+  issues: z.array(
+    z.object({
+      severity: z.enum(['critical', 'major', 'minor', 'suggestion']),
+      description: z.string(),
+      line: z.string().optional(),
+    }),
+  ),
   positives: z.array(z.string()),
   score: z.number().min(0).max(10),
 })
@@ -48,7 +50,11 @@ type Review = z.infer<typeof ReviewSchema>
 // ─── Tools ───────────────────────────────────────────────────────────────────
 
 type ComplexityInput = { code: string }
-type ComplexityOutput = { cyclomaticComplexity: number; cognitiveComplexity: number; recommendation: string }
+type ComplexityOutput = {
+  cyclomaticComplexity: number
+  cognitiveComplexity: number
+  recommendation: string
+}
 
 const analyzeComplexityTool: ToolDefinition<ComplexityInput, ComplexityOutput> = {
   id: 'analyze-complexity',
@@ -67,7 +73,8 @@ const analyzeComplexityTool: ToolDefinition<ComplexityInput, ComplexityOutput> =
     return {
       cyclomaticComplexity: complexity,
       cognitiveComplexity: Math.floor(complexity * 0.8),
-      recommendation: complexity > 10 ? 'Consider breaking this function down' : 'Complexity is acceptable',
+      recommendation:
+        complexity > 10 ? 'Consider breaking this function down' : 'Complexity is acceptable',
     }
   },
 }
@@ -86,9 +93,12 @@ const checkSecurityPatternsTool: ToolDefinition<SecurityInput, SecurityOutput> =
   execute: async ({ diff }) => {
     // Production: use a real SAST tool
     const issues: Array<{ pattern: string; severity: string; line: string }> = []
-    if (diff.includes('eval(')) issues.push({ pattern: 'eval() usage', severity: 'critical', line: 'detected' })
-    if (diff.includes('TODO')) issues.push({ pattern: 'TODO comment', severity: 'minor', line: 'detected' })
-    if (diff.includes('console.log')) issues.push({ pattern: 'console.log left in code', severity: 'minor', line: 'detected' })
+    if (diff.includes('eval('))
+      issues.push({ pattern: 'eval() usage', severity: 'critical', line: 'detected' })
+    if (diff.includes('TODO'))
+      issues.push({ pattern: 'TODO comment', severity: 'minor', line: 'detected' })
+    if (diff.includes('console.log'))
+      issues.push({ pattern: 'console.log left in code', severity: 'minor', line: 'detected' })
     return { issues }
   },
 }
@@ -129,9 +139,14 @@ const reviewMockAdapter = {
       type: 'text' as const,
       content: JSON.stringify({
         verdict: 'request_changes',
-        summary: 'Critical security issue found. eval() usage with user input is a severe security risk.',
+        summary:
+          'Critical security issue found. eval() usage with user input is a severe security risk.',
         issues: [
-          { severity: 'critical', description: 'eval() called with user input — XSS/injection risk', line: '+  eval(userInput)' },
+          {
+            severity: 'critical',
+            description: 'eval() called with user input — XSS/injection risk',
+            line: '+  eval(userInput)',
+          },
           { severity: 'minor', description: 'console.log left in production code' },
         ],
         positives: ['Good test coverage', 'Clear variable naming'],
@@ -202,8 +217,12 @@ async function main(): Promise<void> {
 
   const result = await reviewPipeline.run(mockPR)
 
-  const verdictEmoji = result.output.verdict === 'approve' ? '✅'
-    : result.output.verdict === 'request_changes' ? '❌' : '💬'
+  const verdictEmoji =
+    result.output.verdict === 'approve'
+      ? '✅'
+      : result.output.verdict === 'request_changes'
+        ? '❌'
+        : '💬'
 
   console.log(`\n${verdictEmoji} Verdict: ${result.output.verdict.toUpperCase()}`)
   console.log(`Score: ${result.output.score}/10`)
@@ -212,9 +231,14 @@ async function main(): Promise<void> {
   if (result.output.issues.length > 0) {
     console.log('\nIssues:')
     result.output.issues.forEach((issue) => {
-      const icon = issue.severity === 'critical' ? '🔴'
-        : issue.severity === 'major' ? '🟠'
-        : issue.severity === 'minor' ? '🟡' : '💡'
+      const icon =
+        issue.severity === 'critical'
+          ? '🔴'
+          : issue.severity === 'major'
+            ? '🟠'
+            : issue.severity === 'minor'
+              ? '🟡'
+              : '💡'
       console.log(`  ${icon} [${issue.severity}] ${issue.description}`)
     })
   }

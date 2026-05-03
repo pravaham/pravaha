@@ -55,10 +55,7 @@ export function withMessages(
  * Returns a new context with state merged.
  * Original context is never modified.
  */
-export function withState(
-  ctx: ExecutionContext,
-  state: Record<string, unknown>,
-): ExecutionContext {
+export function withState(ctx: ExecutionContext, state: Record<string, unknown>): ExecutionContext {
   return Object.freeze({
     ...ctx,
     state: Object.freeze({ ...ctx.state, ...state }),

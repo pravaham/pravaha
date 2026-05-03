@@ -249,7 +249,8 @@ export class OpenAIToolCallingAdapter implements ToolCallingAdapter {
       return { type: 'text', content: choice.message.content, usage, model: response.model }
     } catch (err) {
       if (err instanceof LLMInvalidResponseError) throw err
-      if (err instanceof OpenAI.RateLimitError) throw new LLMRateLimitError('openai', undefined, err)
+      if (err instanceof OpenAI.RateLimitError)
+        throw new LLMRateLimitError('openai', undefined, err)
       if (err instanceof OpenAI.APIConnectionTimeoutError)
         throw new LLMTimeoutError('openai', this.config.timeoutMs ?? 60_000, err)
       throw new LLMInvalidResponseError(
@@ -360,9 +361,15 @@ export class OpenAIStreamingLLMStep extends BaseStreamingStep {
         }
       }
     } catch (err) {
-      if (err instanceof OpenAI.RateLimitError) throw new LLMRateLimitError('openai', undefined, err)
-      if (err instanceof OpenAI.APIConnectionTimeoutError) throw new LLMTimeoutError('openai', 60_000, err)
-      throw new LLMInvalidResponseError('openai', err instanceof Error ? err.message : String(err), err)
+      if (err instanceof OpenAI.RateLimitError)
+        throw new LLMRateLimitError('openai', undefined, err)
+      if (err instanceof OpenAI.APIConnectionTimeoutError)
+        throw new LLMTimeoutError('openai', 60_000, err)
+      throw new LLMInvalidResponseError(
+        'openai',
+        err instanceof Error ? err.message : String(err),
+        err,
+      )
     }
   }
 

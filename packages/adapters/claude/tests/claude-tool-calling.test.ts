@@ -33,10 +33,7 @@ describe('ClaudeToolCallingAdapter', () => {
       },
     }
 
-    const result = await adapter.chat(
-      [{ role: 'user', content: 'Hello' }],
-      [searchTool],
-    )
+    const result = await adapter.chat([{ role: 'user', content: 'Hello' }], [searchTool])
 
     expect(result.type).toBe('text')
     if (result.type === 'text') expect(result.content).toBe('Direct answer')
@@ -61,10 +58,7 @@ describe('ClaudeToolCallingAdapter', () => {
       },
     }
 
-    const result = await adapter.chat(
-      [{ role: 'user', content: 'Search for test' }],
-      [searchTool],
-    )
+    const result = await adapter.chat([{ role: 'user', content: 'Search for test' }], [searchTool])
 
     expect(result.type).toBe('tool_calls')
     if (result.type === 'tool_calls') {
@@ -98,17 +92,19 @@ describe('ClaudeToolCallingAdapter', () => {
       beta: {
         tools: {
           messages: {
-            create: vi.fn().mockRejectedValue(
-              new Anthropic.RateLimitError(429, {} as never, 'Rate limit', {} as never),
-            ),
+            create: vi
+              .fn()
+              .mockRejectedValue(
+                new Anthropic.RateLimitError(429, {} as never, 'Rate limit', {} as never),
+              ),
           },
         },
       },
     }
 
-    await expect(
-      adapter.chat([{ role: 'user', content: 'Hi' }], []),
-    ).rejects.toThrow(LLMRateLimitError)
+    await expect(adapter.chat([{ role: 'user', content: 'Hi' }], [])).rejects.toThrow(
+      LLMRateLimitError,
+    )
   })
 
   it('reports correct token usage', async () => {

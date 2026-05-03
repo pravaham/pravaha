@@ -31,10 +31,19 @@ const MOCK_DOCUMENT = {
   title: 'Q3 Financial Report 2024',
   chunks: [
     { id: 'c1', text: 'Total revenue for Q3 2024 was $4.2 billion, up 12% year-over-year.' },
-    { id: 'c2', text: 'Operating expenses increased to $2.1 billion, primarily due to R&D investments.' },
+    {
+      id: 'c2',
+      text: 'Operating expenses increased to $2.1 billion, primarily due to R&D investments.',
+    },
     { id: 'c3', text: 'Net profit margin improved to 18.5%, compared to 16.2% in Q3 2023.' },
-    { id: 'c4', text: 'The company expanded into 3 new markets: Brazil, India, and Southeast Asia.' },
-    { id: 'c5', text: 'Customer acquisition cost decreased by 8% following automation initiatives.' },
+    {
+      id: 'c4',
+      text: 'The company expanded into 3 new markets: Brazil, India, and Southeast Asia.',
+    },
+    {
+      id: 'c5',
+      text: 'Customer acquisition cost decreased by 8% following automation initiatives.',
+    },
   ],
 }
 
@@ -55,7 +64,8 @@ const searchDocumentTool: ToolDefinition<SearchInput, SearchOutput> = {
     const keywords = query.toLowerCase().split(' ')
     const scored = MOCK_DOCUMENT.chunks.map((chunk) => ({
       ...chunk,
-      relevance: keywords.filter((k) => chunk.text.toLowerCase().includes(k)).length / keywords.length,
+      relevance:
+        keywords.filter((k) => chunk.text.toLowerCase().includes(k)).length / keywords.length,
     }))
     return {
       chunks: scored
@@ -92,7 +102,9 @@ const smartMockAdapter = {
     if (callCount === 1) {
       return {
         type: 'tool_calls' as const,
-        toolCalls: [{ id: 'tc-1', toolId: 'search-document', input: { query: 'revenue profit margin' } }],
+        toolCalls: [
+          { id: 'tc-1', toolId: 'search-document', input: { query: 'revenue profit margin' } },
+        ],
         usage: { promptTokens: 50, completionTokens: 20, totalTokens: 70 },
         model: 'mock',
       }
@@ -158,9 +170,7 @@ const pipeline = new PipelineBuilder<string, z.infer<typeof OutputSchema>>(
 // ─── Run ──────────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
-  const questions = [
-    'What was the revenue and profit margin in Q3 2024?',
-  ]
+  const questions = ['What was the revenue and profit margin in Q3 2024?']
 
   for (const question of questions) {
     console.log(`\nQ: ${question}`)

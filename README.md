@@ -46,8 +46,13 @@ import { PipelineBuilder, TransformStep, LinearRouter } from '@pravaha/core'
 import type { LLMRequest } from '@pravaha/core'
 import { ClaudeLLMStep } from '@pravaha/adapter-claude'
 
-const prepare = new TransformStep('prepare', 'Prepare', z.string(), LLMRequestSchema,
-  (q): LLMRequest => ({ messages: [{ role: 'user', content: q }] }))
+const prepare = new TransformStep(
+  'prepare',
+  'Prepare',
+  z.string(),
+  LLMRequestSchema,
+  (q): LLMRequest => ({ messages: [{ role: 'user', content: q }] }),
+)
 
 const llm = new ClaudeLLMStep('llm', 'LLM', { apiKey: process.env.ANTHROPIC_API_KEY! })
 
@@ -58,7 +63,7 @@ const pipeline = new PipelineBuilder({ id: 'my-pipeline', name: 'My Pipeline', v
 
 const result = await pipeline.run('What is 2 + 2?')
 console.log(result.output.content) // "4"
-console.log(result.trace)          // Full execution trace
+console.log(result.trace) // Full execution trace
 ```
 
 ## Agentic Pipelines
@@ -106,27 +111,27 @@ npx pravaha trace show <runId>
 
 ## Packages
 
-| Package | Description |
-|---|---|
-| `@pravaha/core` | Pipeline engine, AgentStep, ToolStep, withRetry |
-| `@pravaha/adapter-claude` | Anthropic Claude — direct + Vertex AI |
-| `@pravaha/adapter-openai` | OpenAI + Azure OpenAI |
-| `@pravaha/adapter-ollama` | Local models via Ollama |
-| `@pravaha/adapter-memory-redis` | Redis memory backend |
-| `@pravaha/adapter-trace-fs` | File-system trace store |
-| `@pravaha/plugin-cost-tracker` | Token cost tracking |
-| `@pravaha/cli` | Trace inspector CLI |
+| Package                         | Description                                     |
+| ------------------------------- | ----------------------------------------------- |
+| `@pravaha/core`                 | Pipeline engine, AgentStep, ToolStep, withRetry |
+| `@pravaha/adapter-claude`       | Anthropic Claude — direct + Vertex AI           |
+| `@pravaha/adapter-openai`       | OpenAI + Azure OpenAI                           |
+| `@pravaha/adapter-ollama`       | Local models via Ollama                         |
+| `@pravaha/adapter-memory-redis` | Redis memory backend                            |
+| `@pravaha/adapter-trace-fs`     | File-system trace store                         |
+| `@pravaha/plugin-cost-tracker`  | Token cost tracking                             |
+| `@pravaha/cli`                  | Trace inspector CLI                             |
 
 ## vs LangChain
 
-| | Pravaha | LangChain |
-|---|---|---|
-| Bundle size | Minimal | Heavy |
-| TypeScript | Strict, first-class | Partial |
-| Debugging | Full trace on every run | Console logs |
-| Testing | Dry-run mode, mock adapters | Hard |
-| Learning curve | 30 minutes | Days |
-| Provider swap | One import change | Refactor |
+|                | Pravaha                     | LangChain    |
+| -------------- | --------------------------- | ------------ |
+| Bundle size    | Minimal                     | Heavy        |
+| TypeScript     | Strict, first-class         | Partial      |
+| Debugging      | Full trace on every run     | Console logs |
+| Testing        | Dry-run mode, mock adapters | Hard         |
+| Learning curve | 30 minutes                  | Days         |
+| Provider swap  | One import change           | Refactor     |
 
 ## Contributing
 

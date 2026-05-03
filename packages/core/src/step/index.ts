@@ -1,15 +1,15 @@
-import { z } from "zod";
-import type { ExecutionContext } from "../context/index.js";
-import type { PravahaId, Metadata } from "../types/index.js";
-import { StepExecutionError, ValidationError } from "../errors/index.js";
-import { PravahaError } from "../errors/index.js";
+import { z } from 'zod'
+import type { ExecutionContext } from '../context/index.js'
+import type { PravahaId, Metadata } from '../types/index.js'
+import { StepExecutionError, ValidationError } from '../errors/index.js'
+import { PravahaError } from '../errors/index.js'
 /**
  * Result of a step execution.
  * Contains the output and the (potentially updated) context.
  */
 export interface StepResult<TOutput> {
-  readonly output: TOutput;
-  readonly context: ExecutionContext;
+  readonly output: TOutput
+  readonly context: ExecutionContext
 }
 
 /**
@@ -26,26 +26,23 @@ export interface StepResult<TOutput> {
  */
 export interface Step<TInput, TOutput> {
   /** Unique identifier within a pipeline */
-  readonly id: PravahaId;
+  readonly id: PravahaId
   /** Human-readable name for trace display */
-  readonly name: string;
+  readonly name: string
   /** Step type identifier for trace categorization */
-  readonly type: string;
+  readonly type: string
   /** Zod schema for input validation */
-  readonly inputSchema: z.ZodType<TInput>;
+  readonly inputSchema: z.ZodType<TInput>
   /** Zod schema for output validation */
-  readonly outputSchema: z.ZodType<TOutput>;
+  readonly outputSchema: z.ZodType<TOutput>
   /** Step-level metadata */
-  readonly metadata: Metadata;
+  readonly metadata: Metadata
   /**
    * Execute the step.
    * Must be pure — same input + context always produces same output.
    * Must not mutate context — return updated context in result.
    */
-  execute(
-    input: TInput,
-    context: ExecutionContext,
-  ): Promise<StepResult<TOutput>>;
+  execute(input: TInput, context: ExecutionContext): Promise<StepResult<TOutput>>
 }
 
 /**
@@ -53,63 +50,50 @@ export interface Step<TInput, TOutput> {
  * Provides input/output validation and error wrapping automatically.
  * Extend this instead of implementing Step directly.
  */
-export abstract class BaseStep<TInput, TOutput> implements Step<
-  TInput,
-  TOutput
-> {
-  abstract readonly id: PravahaId;
-  abstract readonly name: string;
-  abstract readonly type: string;
-  abstract readonly inputSchema: z.ZodType<TInput>;
-  abstract readonly outputSchema: z.ZodType<TOutput>;
-  readonly metadata: Metadata = {};
+export abstract class BaseStep<TInput, TOutput> implements Step<TInput, TOutput> {
+  abstract readonly id: PravahaId
+  abstract readonly name: string
+  abstract readonly type: string
+  abstract readonly inputSchema: z.ZodType<TInput>
+  abstract readonly outputSchema: z.ZodType<TOutput>
+  readonly metadata: Metadata = {}
 
-  async execute(
-    input: TInput,
-    context: ExecutionContext,
-  ): Promise<StepResult<TOutput>> {
-    const inputResult = this.inputSchema.safeParse(input);
+  async execute(input: TInput, context: ExecutionContext): Promise<StepResult<TOutput>> {
+    const inputResult = this.inputSchema.safeParse(input)
     if (!inputResult.success) {
       throw new ValidationError(
         `${this.id}.input`,
-        "Input validation failed",
+        'Input validation failed',
         inputResult.error.issues,
-      );
+      )
     }
 
-    let output: TOutput;
+    let output: TOutput
     try {
-      output = await this.run(inputResult.data, context);
+      output = await this.run(inputResult.data, context)
       // AFTER
     } catch (err) {
-      if (err instanceof PravahaError) throw err; // pass through ALL Pravaha errors
-      throw new StepExecutionError(
-        this.id,
-        err instanceof Error ? err.message : String(err),
-        err,
-      );
+      if (err instanceof PravahaError) throw err // pass through ALL Pravaha errors
+      throw new StepExecutionError(this.id, err instanceof Error ? err.message : String(err), err)
     }
 
-    const outputResult = this.outputSchema.safeParse(output);
+    const outputResult = this.outputSchema.safeParse(output)
     if (!outputResult.success) {
       throw new ValidationError(
         `${this.id}.output`,
-        "Output validation failed",
+        'Output validation failed',
         outputResult.error.issues,
-      );
+      )
     }
 
-    return { output: outputResult.data, context };
+    return { output: outputResult.data, context }
   }
 
   /**
    * Implement step logic here.
    * Input is already validated when this is called.
    */
-  protected abstract run(
-    input: TInput,
-    context: ExecutionContext,
-  ): Promise<TOutput>;
+  protected abstract run(input: TInput, context: ExecutionContext): Promise<TOutput>
 }
 
 /**
@@ -117,7 +101,7 @@ export abstract class BaseStep<TInput, TOutput> implements Step<
  * No LLM calls, no side effects.
  */
 export class TransformStep<TInput, TOutput> extends BaseStep<TInput, TOutput> {
-  readonly type = "transform";
+  readonly type = 'transform'
 
   constructor(
     readonly id: PravahaId,
@@ -129,13 +113,10 @@ export class TransformStep<TInput, TOutput> extends BaseStep<TInput, TOutput> {
       context: ExecutionContext,
     ) => TOutput | Promise<TOutput>,
   ) {
-    super();
+    super()
   }
 
-  protected async run(
-    input: TInput,
-    context: ExecutionContext,
-  ): Promise<TOutput> {
-    return this.transformer(input, context);
+  protected async run(input: TInput, context: ExecutionContext): Promise<TOutput> {
+    return this.transformer(input, context)
   }
 }

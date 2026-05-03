@@ -43,7 +43,11 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/pravaham/pravaha.git",
@@ -53,5 +57,13 @@
   "bugs": {
     "url": "https://github.com/pravaham/pravaha/issues"
   },
-  "keywords": ["pravaha", "opentelemetry", "otel", "tracing", "observability", "ai", "agent"]
+  "keywords": [
+    "pravaha",
+    "opentelemetry",
+    "otel",
+    "tracing",
+    "observability",
+    "ai",
+    "agent"
+  ]
 }

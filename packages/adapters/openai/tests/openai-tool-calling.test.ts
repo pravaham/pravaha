@@ -30,10 +30,7 @@ describe('OpenAIToolCallingAdapter', () => {
       },
     }
 
-    const result = await adapter.chat(
-      [{ role: 'user', content: 'Hello' }],
-      [weatherTool],
-    )
+    const result = await adapter.chat([{ role: 'user', content: 'Hello' }], [weatherTool])
 
     expect(result.type).toBe('text')
     if (result.type === 'text') expect(result.content).toBe('Direct answer')
@@ -98,16 +95,18 @@ describe('OpenAIToolCallingAdapter', () => {
     adapter.client = {
       chat: {
         completions: {
-          create: vi.fn().mockRejectedValue(
-            new OpenAI.RateLimitError(429, {} as never, 'Rate limit', {} as never),
-          ),
+          create: vi
+            .fn()
+            .mockRejectedValue(
+              new OpenAI.RateLimitError(429, {} as never, 'Rate limit', {} as never),
+            ),
         },
       },
     }
 
-    await expect(
-      adapter.chat([{ role: 'user', content: 'Hi' }], []),
-    ).rejects.toThrow(LLMRateLimitError)
+    await expect(adapter.chat([{ role: 'user', content: 'Hi' }], [])).rejects.toThrow(
+      LLMRateLimitError,
+    )
   })
 
   it('includes error message in tool result when error is set', () => {

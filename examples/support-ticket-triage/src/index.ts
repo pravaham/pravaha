@@ -171,7 +171,13 @@ class GeneralResponseStep extends BaseStep<Classification, TicketResponse> {
  */
 // Add explicit input/output types first
 type KBLookupInput = {
-  ticket: { id: string; subject: string; body: string; customerId: string; priority: 'low' | 'medium' | 'high' | 'critical' }
+  ticket: {
+    id: string
+    subject: string
+    body: string
+    customerId: string
+    priority: 'low' | 'medium' | 'high' | 'critical'
+  }
   category: 'billing' | 'technical' | 'general'
   confidence: number
   reasoning: string
@@ -208,16 +214,22 @@ const knowledgeBaseLookupDefinition: ToolDefinition<KBLookupInput, KBLookupOutpu
     category: z.enum(['billing', 'technical', 'general']),
     confidence: z.number(),
     reasoning: z.string(),
-    kbArticles: z.array(z.object({
-      id: z.string(),
-      title: z.string(),
-      summary: z.string(),
-    })),
+    kbArticles: z.array(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        summary: z.string(),
+      }),
+    ),
   }),
   execute: async (input: KBLookupInput): Promise<KBLookupOutput> => ({
     ...input,
     kbArticles: [
-      { id: 'KB-001', title: 'Login Issues Troubleshooting', summary: 'Steps to resolve common login failures' },
+      {
+        id: 'KB-001',
+        title: 'Login Issues Troubleshooting',
+        summary: 'Steps to resolve common login failures',
+      },
       { id: 'KB-002', title: 'Password Reset Procedure', summary: 'How to reset user passwords' },
     ],
   }),

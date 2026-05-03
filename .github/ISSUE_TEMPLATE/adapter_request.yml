@@ -1,12 +1,12 @@
 name: Adapter Request
 description: Request support for a new LLM provider or service
-labels: ["adapter-request"]
+labels: ['adapter-request']
 body:
   - type: input
     id: provider
     attributes:
       label: Provider / Service
-      placeholder: "Mistral AI"
+      placeholder: 'Mistral AI'
     validations:
       required: true
 

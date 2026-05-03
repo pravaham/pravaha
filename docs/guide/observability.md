@@ -8,10 +8,10 @@ No configuration needed.
 ```typescript
 const result = await pipeline.run(input)
 
-result.trace.runId        // unique identifier
-result.trace.status       // 'completed' | 'failed'
-result.trace.durationMs   // total wall time
-result.trace.events       // one event per step
+result.trace.runId // unique identifier
+result.trace.status // 'completed' | 'failed'
+result.trace.durationMs // total wall time
+result.trace.events // one event per step
 ```
 
 ## Trace Viewer
@@ -57,14 +57,17 @@ plugins.register(new OtelPlugin())
 
 // OTLP exporter — production
 // Requires: pnpm add @opentelemetry/exporter-trace-otlp-http
-plugins.register(new OtelPlugin({
-  exporter: 'otlp',
-  otlpEndpoint: 'http://my-collector:4318/v1/traces',
-  serviceName: 'my-service',
-}))
+plugins.register(
+  new OtelPlugin({
+    exporter: 'otlp',
+    otlpEndpoint: 'http://my-collector:4318/v1/traces',
+    serviceName: 'my-service',
+  }),
+)
 ```
 
 Every pipeline run becomes a root span. Every step becomes a child span with:
+
 - Input/output attributes
 - Token usage (prompt, completion, total)
 - Model name

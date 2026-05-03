@@ -14,8 +14,12 @@ export function renderTraceDiff(traceA: Trace, traceB: Trace): string {
   lines.push('')
   lines.push(chalk.bold('─'.repeat(70)))
   lines.push(chalk.bold('  Trace Diff'))
-  lines.push(`  ${chalk.cyan('A:')} ${traceA.runId} (${traceA.pipelineName}) — ${traceA.durationMs}ms`)
-  lines.push(`  ${chalk.yellow('B:')} ${traceB.runId} (${traceB.pipelineName}) — ${traceB.durationMs}ms`)
+  lines.push(
+    `  ${chalk.cyan('A:')} ${traceA.runId} (${traceA.pipelineName}) — ${traceA.durationMs}ms`,
+  )
+  lines.push(
+    `  ${chalk.yellow('B:')} ${traceB.runId} (${traceB.pipelineName}) — ${traceB.durationMs}ms`,
+  )
   lines.push(chalk.bold('─'.repeat(70)))
   lines.push('')
 
@@ -46,7 +50,9 @@ export function renderTraceDiff(traceA: Trace, traceB: Trace): string {
   const durationColor = durationDiff > 0 ? chalk.red : chalk.green
 
   lines.push(chalk.bold('─'.repeat(70)))
-  lines.push(`  Total duration: A=${traceA.durationMs}ms  B=${traceB.durationMs}ms  Δ=${durationColor(`${durationSign}${durationDiff}ms`)}`)
+  lines.push(
+    `  Total duration: A=${traceA.durationMs}ms  B=${traceB.durationMs}ms  Δ=${durationColor(`${durationSign}${durationDiff}ms`)}`,
+  )
   lines.push(chalk.bold('─'.repeat(70)))
   lines.push('')
 
@@ -59,11 +65,7 @@ function renderStepComparison(stepId: string, a: TraceEvent, b: TraceEvent): str
   const durationDiff = b.durationMs - a.durationMs
   const durationSign = durationDiff > 0 ? '+' : ''
   const durationColor =
-    Math.abs(durationDiff) > 100
-      ? durationDiff > 0
-        ? chalk.red
-        : chalk.green
-      : chalk.dim
+    Math.abs(durationDiff) > 100 ? (durationDiff > 0 ? chalk.red : chalk.green) : chalk.dim
 
   const statusIndicator = statusMatch ? chalk.dim('=') : chalk.red('≠')
 

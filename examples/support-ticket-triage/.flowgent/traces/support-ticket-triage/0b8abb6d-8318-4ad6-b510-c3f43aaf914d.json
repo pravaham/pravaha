@@ -64,10 +64,7 @@
         "ticketId": "TKT-003",
         "category": "general",
         "response": "Dear Customer CUST-789, thank you for contacting support. We will respond within 2 business days. Reference: TKT-003",
-        "suggestedActions": [
-          "Review FAQ",
-          "Check knowledge base"
-        ],
+        "suggestedActions": ["Review FAQ", "Check knowledge base"],
         "escalate": false
       },
       "metadata": {

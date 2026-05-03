@@ -20,6 +20,7 @@ pnpm test
 Before contributing, read [ARCHITECTURE.md](ARCHITECTURE.md) and the ADRs in `docs/architecture/decisions/`. Every PR must respect these decisions.
 
 **Non-negotiables:**
+
 - No `any` types — ever
 - `@pravaha/core` must not gain new external dependencies (only `zod` is allowed)
 - `ExecutionContext` must remain immutable

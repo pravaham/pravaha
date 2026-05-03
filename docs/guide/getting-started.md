@@ -14,6 +14,7 @@ npm create pravaha-app@latest
 ```
 
 This walks you through:
+
 1. Project name
 2. Template (basic / agent / support-triage)
 3. LLM provider (Claude / OpenAI / Ollama)
@@ -43,12 +44,16 @@ import type { LLMRequest } from '@pravaha/core'
 import { ClaudeLLMStep } from '@pravaha/adapter-claude'
 
 const LLMRequestSchema = z.object({
-  messages: z.array(z.object({ role: z.enum(['system', 'user', 'assistant', 'tool']), content: z.string() })),
+  messages: z.array(
+    z.object({ role: z.enum(['system', 'user', 'assistant', 'tool']), content: z.string() }),
+  ),
 })
 
 const prepare = new TransformStep(
-  'prepare', 'Prepare',
-  z.string(), LLMRequestSchema,
+  'prepare',
+  'Prepare',
+  z.string(),
+  LLMRequestSchema,
   (q): LLMRequest => ({ messages: [{ role: 'user', content: q }] }),
 )
 
@@ -74,9 +79,9 @@ console.log(result.output.content)
 Every run produces a full trace:
 
 ```typescript
-console.log(result.trace.runId)        // unique run ID
-console.log(result.trace.durationMs)   // total duration
-console.log(result.trace.events)       // all step events
+console.log(result.trace.runId) // unique run ID
+console.log(result.trace.durationMs) // total duration
+console.log(result.trace.events) // all step events
 ```
 
 Or use the visual trace viewer:

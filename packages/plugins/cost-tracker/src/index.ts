@@ -91,8 +91,7 @@ export class CostTrackerPlugin implements PravahaPlugin {
     this.runCosts.set(event.runId, {
       ...existing,
       totalCostUsd: existing.totalCostUsd + stepCost,
-      totalTokens:
-        existing.totalTokens + output.usage.promptTokens + output.usage.completionTokens,
+      totalTokens: existing.totalTokens + output.usage.promptTokens + output.usage.completionTokens,
       promptTokens: existing.promptTokens + output.usage.promptTokens,
       completionTokens: existing.completionTokens + output.usage.completionTokens,
       byStep: {

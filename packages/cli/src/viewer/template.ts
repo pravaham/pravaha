@@ -24,27 +24,28 @@ function fmt(ms: number): string {
  */
 export function generateTraceViewerHtml(traces: readonly Trace[]): string {
   // Escape < and > in the JSON blob so <script> tags can't break out of the script block
-  const tracesJson = JSON.stringify(traces)
-    .replace(/</g, '\\u003c')
-    .replace(/>/g, '\\u003e')
+  const tracesJson = JSON.stringify(traces).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')
 
   // Pre-render sidebar server-side — pipeline names are HTML-escaped here
   const sidebarItems = traces
     .map((trace, i) => {
       const statusClass = trace.status === 'completed' ? 'completed' : 'failed'
       const hasMock = trace.events.some(
-        (e) => e.stepType === 'mock' || (e.metadata as Record<string, unknown>)?.['dryRun'] === true,
+        (e) =>
+          e.stepType === 'mock' || (e.metadata as Record<string, unknown>)?.['dryRun'] === true,
       )
-      return `<div class="trace-item" id="trace-item-${i}" onclick="selectTrace(${i})">` +
+      return (
+        `<div class="trace-item" id="trace-item-${i}" onclick="selectTrace(${i})">` +
         `<div class="pipeline-name">${escHtml(trace.pipelineName)}</div>` +
         `<div class="run-id">${escHtml(trace.runId.slice(0, 16))}&hellip;</div>` +
         `<div class="meta">` +
-          `<span class="badge ${statusClass}">${escHtml(trace.status)}</span>` +
-          (hasMock ? '<span class="badge mock">dry-run</span>' : '') +
-          `<span>${fmt(trace.durationMs)}</span>` +
-          `<span>${trace.events.length} steps</span>` +
+        `<span class="badge ${statusClass}">${escHtml(trace.status)}</span>` +
+        (hasMock ? '<span class="badge mock">dry-run</span>' : '') +
+        `<span>${fmt(trace.durationMs)}</span>` +
+        `<span>${trace.events.length} steps</span>` +
         `</div>` +
-      `</div>`
+        `</div>`
+      )
     })
     .join('\n')
 

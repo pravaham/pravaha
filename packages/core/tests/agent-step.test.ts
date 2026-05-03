@@ -239,9 +239,11 @@ describe('AgentStep', () => {
       }),
     })
 
-    const pipeline = new PipelineBuilder<string, { category: string; confidence: number }>(
-      { id: 'agent-pipeline', name: 'Agent Pipeline', version: '1.0.0' },
-    )
+    const pipeline = new PipelineBuilder<string, { category: string; confidence: number }>({
+      id: 'agent-pipeline',
+      name: 'Agent Pipeline',
+      version: '1.0.0',
+    })
       .step(agent, new LinearRouter('agent-to-parser', 'parse-classification'))
       .step(parser)
       .build()
@@ -284,10 +286,7 @@ describe('AgentOutputParser', () => {
     })
 
     const ctx = createExecutionContext('pipe-1')
-    const result = await parser.execute(
-      makeAgentOutput('```json\n{"result": "success"}\n```'),
-      ctx,
-    )
+    const result = await parser.execute(makeAgentOutput('```json\n{"result": "success"}\n```'), ctx)
     expect(result.output.result).toBe('success')
   })
 
@@ -300,9 +299,9 @@ describe('AgentOutputParser', () => {
     })
 
     const ctx = createExecutionContext('pipe-1')
-    await expect(
-      parser.execute(makeAgentOutput('not valid json at all'), ctx),
-    ).rejects.toThrow(AgentOutputParseError)
+    await expect(parser.execute(makeAgentOutput('not valid json at all'), ctx)).rejects.toThrow(
+      AgentOutputParseError,
+    )
   })
 
   it('extracts regex match from content', async () => {
@@ -350,10 +349,7 @@ describe('AgentOutputParser', () => {
     })
 
     const ctx = createExecutionContext('pipe-1')
-    const result = await parser.execute(
-      makeAgentOutput('First line\nSecond line\nThird line'),
-      ctx,
-    )
+    const result = await parser.execute(makeAgentOutput('First line\nSecond line\nThird line'), ctx)
     expect(result.output.summary).toBe('First line')
     expect(result.output.lineCount).toBe(3)
   })

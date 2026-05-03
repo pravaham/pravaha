@@ -10,12 +10,14 @@ religion, or sexual identity and orientation.
 ## Our Standards
 
 **Positive behaviors:**
+
 - Using welcoming and inclusive language
 - Respecting differing viewpoints and experiences
 - Gracefully accepting constructive criticism
 - Focusing on what is best for the community
 
 **Unacceptable behaviors:**
+
 - Harassment of any kind
 - Trolling, insulting, or derogatory comments
 - Publishing others' private information without permission

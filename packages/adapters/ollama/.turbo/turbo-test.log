@@ -5,12 +5,12 @@
 
 [7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mC:/Users/snova/Documents/tcs/Learnings/AIProjects/flowagent/packages/adapters/ollama[39m
 
- [32m✓[39m tests/ollama-streaming.test.ts [2m ([22m[2m4 tests[22m[2m)[22m[90m 31[2mms[22m[39m
- [32m✓[39m tests/ollama.test.ts [2m ([22m[2m11 tests[22m[2m)[22m[90m 40[2mms[22m[39m
+ [32m✓[39m tests/ollama-streaming.test.ts [2m ([22m[2m4 tests[22m[2m)[22m[90m 27[2mms[22m[39m
  [32m✓[39m tests/ollama-tool-calling.test.ts [2m ([22m[2m6 tests[22m[2m)[22m[90m 14[2mms[22m[39m
+ [32m✓[39m tests/ollama.test.ts [2m ([22m[2m11 tests[22m[2m)[22m[90m 55[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
 [2m      Tests [22m [1m[32m21 passed[39m[22m[90m (21)[39m
-[2m   Start at [22m 20:00:08
-[2m   Duration [22m 5.07s[2m (transform 1.25s, setup 0ms, collect 5.28s, tests 85ms, environment 1ms, prepare 2.64s)[22m
+[2m   Start at [22m 14:40:30
+[2m   Duration [22m 6.29s[2m (transform 1.98s, setup 1ms, collect 7.40s, tests 96ms, environment 1ms, prepare 4.32s)[22m
 

@@ -87,11 +87,11 @@ describe('ClaudeStreamingLLMStep', () => {
 
     const ctx = createExecutionContext('pipe-1')
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for await (const _ of step.stream(
-      { messages: [{ role: 'user', content: 'Hi' }] },
-      ctx,
-      { onChunk },
-    )) { /* consume */ }
+    for await (const _ of step.stream({ messages: [{ role: 'user', content: 'Hi' }] }, ctx, {
+      onChunk,
+    })) {
+      /* consume */
+    }
 
     expect(onChunk).toHaveBeenCalledTimes(3)
   })
@@ -112,7 +112,9 @@ describe('ClaudeStreamingLLMStep', () => {
 
     const ctx = createExecutionContext('pipe-1')
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for await (const _ of step.stream({ messages: [{ role: 'user', content: 'Hi' }] }, ctx)) { /* consume */ }
+    for await (const _ of step.stream({ messages: [{ role: 'user', content: 'Hi' }] }, ctx)) {
+      /* consume */
+    }
 
     const response = step.getLastResponse()
     expect(response).not.toBeNull()

@@ -166,9 +166,7 @@ export class FsTraceStore implements TraceStore {
 
     try {
       const dir = this.pipelineDir(pipelineId)
-      const files = (await fs.readdir(dir))
-        .filter((f) => f.endsWith('.json'))
-        .sort()
+      const files = (await fs.readdir(dir)).filter((f) => f.endsWith('.json')).sort()
 
       if (files.length > this.maxTracesPerPipeline) {
         const toDelete = files.slice(0, files.length - this.maxTracesPerPipeline)

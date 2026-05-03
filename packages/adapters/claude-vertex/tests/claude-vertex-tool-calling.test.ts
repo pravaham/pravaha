@@ -45,10 +45,7 @@ describe('ClaudeVertexToolCallingAdapter', () => {
       },
     }
 
-    const result = await adapter.chat(
-      [{ role: 'user', content: 'Hello' }],
-      [searchTool],
-    )
+    const result = await adapter.chat([{ role: 'user', content: 'Hello' }], [searchTool])
 
     expect(result.type).toBe('text')
     if (result.type === 'text') expect(result.content).toBe('Direct answer')
@@ -71,10 +68,7 @@ describe('ClaudeVertexToolCallingAdapter', () => {
       },
     }
 
-    const result = await adapter.chat(
-      [{ role: 'user', content: 'Search for test' }],
-      [searchTool],
-    )
+    const result = await adapter.chat([{ role: 'user', content: 'Search for test' }], [searchTool])
 
     expect(result.type).toBe('tool_calls')
     if (result.type === 'tool_calls') {
@@ -97,9 +91,9 @@ describe('ClaudeVertexToolCallingAdapter', () => {
       },
     }
 
-    await expect(
-      adapter.chat([{ role: 'user', content: 'Hi' }], []),
-    ).rejects.toThrow(LLMRateLimitError)
+    await expect(adapter.chat([{ role: 'user', content: 'Hi' }], [])).rejects.toThrow(
+      LLMRateLimitError,
+    )
   })
 
   it('builds correct tool result message', () => {
