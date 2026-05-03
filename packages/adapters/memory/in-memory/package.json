@@ -1,6 +1,6 @@
 {
   "name": "@pravaha/adapter-memory-inmemory",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "In-memory MemoryStore implementation for Pravaha — development and testing default",
   "type": "module",
   "main": "./dist/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@pravaha/adapter-trace-fs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "File-system trace store for Pravaha — persists traces as JSON for CLI inspection",
   "type": "module",
   "main": "./dist/index.js",

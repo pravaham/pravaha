@@ -1,6 +1,6 @@
 {
   "name": "@pravaha/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Core pipeline engine for Pravaha — zero external dependencies except zod",
   "type": "module",
   "main": "./dist/index.js",

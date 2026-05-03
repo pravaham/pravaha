@@ -1,6 +1,6 @@
 {
   "name": "@pravaha/plugin-otel",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "OpenTelemetry plugin for Pravaha — export pipeline traces as OTEL spans",
   "type": "module",
   "main": "./dist/index.js",
