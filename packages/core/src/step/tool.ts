@@ -139,8 +139,8 @@ function zodToJsonSchema(schema: z.ZodType<unknown>): Record<string, unknown> {
   if (schema instanceof z.ZodString) return { type: 'string' }
   if (schema instanceof z.ZodNumber) return { type: 'number' }
   if (schema instanceof z.ZodBoolean) return { type: 'boolean' }
-  if (schema instanceof z.ZodArray) return { type: 'array', items: zodToJsonSchema(schema.element) }
-  if (schema instanceof z.ZodOptional) return zodToJsonSchema(schema.unwrap())
+  if (schema instanceof z.ZodArray) return { type: 'array', items: zodToJsonSchema(schema.element as z.ZodType<unknown>) }
+  if (schema instanceof z.ZodOptional) return zodToJsonSchema(schema.unwrap() as z.ZodType<unknown>)
   if (schema instanceof z.ZodEnum) return { type: 'string', enum: schema.options as string[] }
 
   return {}

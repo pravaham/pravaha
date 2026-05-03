@@ -65,7 +65,7 @@ export class MockStep<TInput, TOutput> extends BaseStep<TInput, TOutput> {
     return this.wrapped.outputSchema
   }
 
-  protected async run(_input: TInput, _context: ExecutionContext): Promise<TOutput> {
+  protected run(_input: TInput, _context: ExecutionContext): Promise<TOutput> {
     const result = this.outputSchema.safeParse(this.mockOutput)
     if (!result.success) {
       throw new ValidationError(
@@ -74,7 +74,7 @@ export class MockStep<TInput, TOutput> extends BaseStep<TInput, TOutput> {
         result.error.issues,
       )
     }
-    return result.data
+    return Promise.resolve(result.data)
   }
 }
 
@@ -106,11 +106,11 @@ export function buildDryRunPipeline<TInput, TOutput>(
     const mockOutput = options.mockResponses[stepId]
     const step =
       mockOutput !== undefined
-        ? new MockStep(registered.step as Step<unknown, unknown>, mockOutput)
+        ? new MockStep(registered.step, mockOutput)
         : registered.step
 
-    builder.step(step as Step<unknown, unknown>, registered.router)
+    builder.step(step, registered.router)
   }
 
-  return builder.build() as Pipeline<TInput, TOutput>
+  return builder.build()
 }

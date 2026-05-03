@@ -62,7 +62,7 @@ export abstract class BaseStreamingStep
       }
     } catch (err) {
       if (options.onError) {
-        options.onError(err instanceof Error ? err : new Error(String(err)))
+        void options.onError(err instanceof Error ? err : new Error(String(err)))
       }
       throw err
     }

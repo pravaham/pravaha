@@ -92,18 +92,18 @@ export class AgentOutputParser<TOutput> extends BaseStep<AgentStepOutput, TOutpu
     this.metadata = config.metadata ?? {}
   }
 
-  protected async run(input: AgentStepOutput, _context: ExecutionContext): Promise<TOutput> {
+  protected run(input: AgentStepOutput, _context: ExecutionContext): Promise<TOutput> {
     const { content } = input
 
     switch (this.strategy.type) {
       case 'json':
-        return this.parseJson(content)
+        return Promise.resolve(this.parseJson(content))
 
       case 'regex':
-        return this.parseRegex(content, this.strategy.pattern, this.strategy.groupIndex)
+        return Promise.resolve(this.parseRegex(content, this.strategy.pattern, this.strategy.groupIndex))
 
       case 'custom':
-        return this.parseCustom(content, this.strategy.parse)
+        return Promise.resolve(this.parseCustom(content, this.strategy.parse))
     }
   }
 
