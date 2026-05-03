@@ -71,4 +71,4 @@ jobs:
         run: pnpm build
 
       - name: Check pack output
-        run: pnpm --filter "@pravaha/*" pack --dry-run
+        run: pnpm --filter "@pravaha/*" exec npm pack --dry-run
