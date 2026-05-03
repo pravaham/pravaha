@@ -1,6 +1,6 @@
 {
   "name": "@pravaha/adapter-ollama",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ollama adapter for Pravaha — local model support, zero API cost",
   "type": "module",
   "main": "./dist/index.js",

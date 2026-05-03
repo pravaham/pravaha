@@ -1,6 +1,6 @@
 {
   "name": "@pravaha/plugin-cost-tracker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Token cost tracking plugin for Pravaha pipelines",
   "type": "module",
   "main": "./dist/index.js",

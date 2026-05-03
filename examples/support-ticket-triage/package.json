@@ -1,6 +1,6 @@
 {
   "name": "@pravaha/example-support-ticket-triage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Support ticket triage pipeline — Pravaha example",
   "type": "module",

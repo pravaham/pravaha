@@ -1,6 +1,6 @@
 {
   "name": "@pravaha/adapter-memory-redis",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Redis memory adapter for Pravaha — production-grade persistent memory",
   "type": "module",
   "main": "./dist/index.js",
